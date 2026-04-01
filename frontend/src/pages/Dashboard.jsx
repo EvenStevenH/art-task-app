@@ -9,7 +9,7 @@ export default function Dashboard() {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		async function getData() {
+		async function fetchProjects() {
 			try {
 				// get projects from db > save in component's state
 				const { data } = await projectClient.get("/");
@@ -20,7 +20,7 @@ export default function Dashboard() {
 				setLoading(false); // hide loading once the data is fetched
 			}
 		}
-		getData();
+		fetchProjects();
 	}, []);
 
 	const handleSubmit = async (e) => {

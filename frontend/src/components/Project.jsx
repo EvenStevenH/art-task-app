@@ -7,6 +7,7 @@ export default function Project({ project, setProjects, projects }) {
 	const [title, setTitle] = useState(project.title);
 	const [description, setDescription] = useState(project.description);
 	const navigate = useNavigate();
+	const date = new Date(project.createdAt);
 
 	const handleViewDetails = () => {
 		navigate(`/projects/${project._id}/tasks`); // navigate to tasks page for this project
@@ -54,6 +55,9 @@ export default function Project({ project, setProjects, projects }) {
 					<div id="project-info">
 						<h3>{project.title}</h3>
 						<p id="project-username">by {project.user.username}</p>
+						<div>
+							{date.toLocaleDateString()} {date.toLocaleTimeString()}
+						</div>
 						<p>{project.description}</p>
 					</div>
 
