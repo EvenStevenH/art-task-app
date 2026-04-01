@@ -59,19 +59,34 @@ export default function ProjectTasks() {
 
 			<h1>Project Tasks</h1>
 
-			<form onSubmit={handleSubmit}>
+			<form
+				id="project-form"
+				onSubmit={handleSubmit}
+			>
+				<h2>Create a new task!</h2>
+
+				<label htmlFor="task-title">Title:</label>
 				<input
+					type="text"
+					id="task-title"
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					placeholder="Task title"
 					required
 				/>
+
+				<label htmlFor="task-description">Description:</label>
 				<textarea
+					type="text"
+					id="task-description"
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
-					placeholder="Description"
+					placeholder="About my task..."
 				/>
+
+				<label htmlFor="task-status">Description:</label>
 				<select
+					id="task-status"
 					value={status}
 					onChange={(e) => setStatus(e.target.value)}
 				>
@@ -79,6 +94,7 @@ export default function ProjectTasks() {
 					<option>In Progress</option>
 					<option>Done</option>
 				</select>
+
 				<button>Add Task</button>
 			</form>
 

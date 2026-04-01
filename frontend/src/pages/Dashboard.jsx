@@ -52,25 +52,28 @@ export default function Dashboard() {
 				onSubmit={handleSubmit}
 			>
 				<h2>Create a new project!</h2>
+
 				<label htmlFor="project-title">Title:</label>
 				<input
 					type="text"
 					id="project-title"
-					required={true}
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
+					placeholder="Project title"
+					required
 				/>
-				<br />
+
 				<label htmlFor="project-description">Description:</label>
 				<textarea
 					type="text"
 					id="project-description"
-					required={true}
 					value={description}
+					placeholder="About my task..."
 					onChange={(e) => setDescription(e.target.value)}
+					required
 				/>
-				<br />
-				<button>Submit</button>
+
+				<button>Add Project</button>
 			</form>
 
 			<div className="grid">

@@ -165,7 +165,6 @@ nav {
 #profileImage {
 	height: 60px;
 	width: 60px;
-	background-color: black;
 	border-radius: 50%;
 	object-fit: cover;
 	cursor: pointer;
