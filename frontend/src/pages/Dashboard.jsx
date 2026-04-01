@@ -73,7 +73,7 @@ export default function Dashboard() {
 				<button>Submit</button>
 			</form>
 
-			<div className="projects-grid">
+			<div className="grid">
 				{projects.map((project) => (
 					<Project
 						project={project}

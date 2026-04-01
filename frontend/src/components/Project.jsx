@@ -61,7 +61,7 @@ export default function Project({ project, setProjects, projects }) {
 						<p>{project.description}</p>
 					</div>
 
-					<div id="project-actions">
+					<div id="card-actions">
 						<button
 							className="viewBtn"
 							onClick={handleViewDetails}

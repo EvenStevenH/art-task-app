@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { taskClient } from "../clients/api";
+import Task from "../components/Task";
 
 export default function ProjectTasks() {
 	const { projectId } = useParams();
@@ -10,42 +11,45 @@ export default function ProjectTasks() {
 	const [description, setDescription] = useState("");
 	const [status, setStatus] = useState("To Do");
 	const client = taskClient(projectId);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		async function fetchTasks() {
-			const { data } = await client.get("/");
-			setTasks(data);
+			try {
+				const { data } = await client.get("/");
+				setTasks(data);
+			} catch (err) {
+				console.log(err.response.data);
+			} finally {
+				setLoading(false); // hide loading once the data is fetched
+			}
 		}
 		fetchTasks();
 	}, []);
 
-	const handleCreate = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const { data } = await client.post("/", {
-			title,
-			description,
-			status,
-		});
+		try {
+			const { data } = await client.post("/", {
+				title,
+				description,
+				status,
+			});
 
-		setTasks([data, ...tasks]);
-		setTitle("");
-		setDescription("");
-		setStatus("To Do");
+			// reset the form
+			setTasks([data, ...tasks]);
+			setTitle("");
+			setDescription("");
+			setStatus("To Do");
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
-	const handleDelete = async (taskId) => {
-		await client.delete(`/${taskId}`);
-		setTasks(tasks.filter((t) => t._id !== taskId));
-	};
-
-	const handleStatusChange = async (taskId, newStatus) => {
-		const { data } = await client.put(`/${taskId}`, {
-			status: newStatus,
-		});
-
-		setTasks(tasks.map((t) => (t._id === taskId ? data : t)));
-	};
+	if (loading) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<div>
@@ -55,7 +59,7 @@ export default function ProjectTasks() {
 
 			<h1>Project Tasks</h1>
 
-			<form onSubmit={handleCreate}>
+			<form onSubmit={handleSubmit}>
 				<input
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
@@ -78,23 +82,18 @@ export default function ProjectTasks() {
 				<button>Add Task</button>
 			</form>
 
-			{tasks.map((task) => (
-				<div key={task._id}>
-					<h3>{task.title}</h3>
-					<p>{task.description}</p>
-
-					<select
-						value={task.status}
-						onChange={(e) => handleStatusChange(task._id, e.target.value)}
-					>
-						<option>To Do</option>
-						<option>In Progress</option>
-						<option>Done</option>
-					</select>
-
-					<button onClick={() => handleDelete(task._id)}>Delete</button>
-				</div>
-			))}
+			<div className="grid">
+				{tasks.map((task) => (
+					<>
+						<Task
+							task={task}
+							tasks={tasks}
+							key={task._id}
+							setTasks={setTasks}
+						/>
+					</>
+				))}
+			</div>
 		</div>
 	);
 }

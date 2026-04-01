@@ -186,7 +186,7 @@ nav {
 	margin-bottom: 2rem;
 }
 
-.projects-grid {
+.grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 1rem;
@@ -209,7 +209,7 @@ nav {
 	transform: translateY(-5px);
 }
 
-#project-actions {
+#card-actions {
 	display: flex;
 	flex-direction: row;
 	gap: 0.5rem;
