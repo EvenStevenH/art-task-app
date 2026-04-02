@@ -1,8 +1,13 @@
 :root {
-	--text: #eceae4;
-	--text2: #9b9994;
-	--bg: #111;
-	--accent: #ea9b26;
+	--text: #2b1a12;
+	--text2: #665840;
+	--text3: #ebddc2;
+	--bgDark: #85503e;
+	--bgLight: #f8f4e6;
+	--solid: #ecdcc2;
+	--accent: #c07607;
+	--accent2: #ba875f;
+	--accent3: #988a7f;
 
 	--sans: system-ui, "Segoe UI", Roboto, sans-serif;
 	--heading: system-ui, "Segoe UI", Roboto, sans-serif;
@@ -18,7 +23,7 @@
 	letter-spacing: 0.18px;
 	color-scheme: light dark;
 	color: var(--text);
-	background: var(--bg);
+	background: var(--bgDark);
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -42,6 +47,7 @@ a {
 }
 
 h1 {
+	color: var(--text3);
 	font-family: "Bungee", sans-serif;
 	margin-bottom: 1.5rem;
 	text-align: center;
@@ -49,6 +55,7 @@ h1 {
 }
 
 h2 {
+	color: var(--text);
 	margin-bottom: 1rem;
 }
 
@@ -58,8 +65,15 @@ body {
 	border: none;
 }
 
+.svg {
+	filter: invert(0.5) sepia(1);
+	fill: var(--text3);
+	height: 20px;
+	width: 20px;
+}
+
 button {
-	background-color: #444;
+	background-color: var(--accent3);
 	padding: 0.5rem;
 	flex: 1;
 	border-radius: 0.5rem;
@@ -74,12 +88,12 @@ button {
 }
 
 button:hover {
-	filter: brightness(110%);
+	filter: brightness(105%);
 	transform: translateY(-2px);
 }
 
 button:active {
-	filter: brightness(90%);
+	filter: brightness(95%);
 	transform: translateY(2px);
 }
 
@@ -108,7 +122,7 @@ button a {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: #222;
+	background-color: var(--solid);
 	border-radius: 1rem;
 	padding: 3rem;
 }
@@ -116,6 +130,10 @@ button a {
 .auth-page form {
 	display: flex;
 	flex-direction: column;
+}
+
+.auth-page h1 {
+	color: var(--text);
 }
 
 .auth-link {
@@ -141,8 +159,8 @@ select {
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	border: none;
-	background-color: var(--text);
-	color: black;
+	background-color: var(--bgLight);
+	color: var(--text);
 }
 
 .auth-page form input:last-of-type {
@@ -163,7 +181,12 @@ nav {
 	margin-bottom: 3rem;
 }
 
+nav ul li a {
+	color: var(--text3);
+}
+
 #user-section {
+	color: var(--text3);
 	display: flex;
 	gap: 0.6rem;
 	justify-content: center;
@@ -171,6 +194,7 @@ nav {
 }
 
 #profileImage {
+	outline: 0.2rem solid var(--text3);
 	height: 60px;
 	width: 60px;
 	border-radius: 50%;
@@ -190,7 +214,7 @@ nav {
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;
-	background-color: #222;
+	background-color: var(--solid);
 	padding: 2rem;
 	margin-bottom: 2rem;
 }
@@ -207,7 +231,7 @@ nav {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: #222;
+	background-color: var(--solid);
 	border-radius: 1rem;
 	padding: 1.5rem;
 	box-sizing: border-box;
@@ -234,7 +258,13 @@ nav {
 .auth-page button,
 .editSaveBtn,
 .addNewBtn {
-	background: rgb(139, 148, 50);
+	background: #73763d;
+}
+
+.toggleFormBtn,
+.backBtn {
+	background-color: var(--accent2);
+	padding: 0.5rem 1rem;
 }
 
 .editBtn {
@@ -242,11 +272,11 @@ nav {
 }
 
 .deleteBtn {
-	background: #bf442c;
+	background: #a45429;
 }
 
 .backBtn {
-	padding: 1rem 1.5rem;
+	/* padding: 1rem 1.5rem; */
 	margin: 3rem 0 auto;
 	display: inline-flex;
 }

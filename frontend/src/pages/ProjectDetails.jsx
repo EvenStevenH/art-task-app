@@ -84,6 +84,10 @@ export default function ProjectTasks() {
 					className="toggleFormBtn"
 					onClick={() => setIsFormVisible(!isFormVisible)}
 				>
+					<img
+						src="/src/components/icons/add.svg"
+						alt="Add icon"
+					/>
 					Add New Task
 				</button>
 			)}

@@ -74,6 +74,10 @@ export default function Dashboard() {
 					className="toggleFormBtn"
 					onClick={() => setIsFormVisible(!isFormVisible)}
 				>
+					<img
+						src="/src/components/icons/add.svg"
+						alt="Add icon"
+					/>
 					Add New Project
 				</button>
 			)}
