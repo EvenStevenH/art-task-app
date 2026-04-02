@@ -2,6 +2,7 @@
 	--text: #2b1a12;
 	--text2: #493e2b;
 	--text3: #ebddc2;
+	--text4: #6d5e44;
 	--bgDark: #85503e;
 	--bgLight: #f8f4e6;
 	--solid: #ecdcc2;
@@ -48,9 +49,11 @@ a {
 
 h1 {
 	color: var(--text3);
+	font-size: 3rem;
 	font-family: "Bungee", sans-serif;
+	line-height: 1.2;
 	margin-bottom: 1.5rem;
-	text-align: center;
+	text-align: left;
 	text-transform: uppercase;
 }
 
@@ -135,6 +138,8 @@ button a {
 }
 
 .auth-page h1 {
+	font-size: 2rem;
+	text-align: center;
 	color: var(--text);
 }
 
@@ -154,6 +159,7 @@ label {
 input,
 textarea,
 select {
+	width: 100%;
 	font-size: inherit;
 	font-family: inherit;
 	font-size: 1rem;
@@ -163,6 +169,8 @@ select {
 	border: none;
 	background-color: var(--bgLight);
 	color: var(--text);
+	flex: 1;
+	resize: none;
 }
 
 .auth-page form input:last-of-type {
@@ -180,7 +188,15 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
+}
+
+nav ul li {
+	transition: all 0.2s ease;
+}
+
+nav ul li:hover {
+	transform: translateX(4px);
 }
 
 nav ul li a {
@@ -190,7 +206,7 @@ nav ul li a {
 #user-section {
 	color: var(--text3);
 	display: flex;
-	gap: 0.6rem;
+	gap: 0.8rem;
 	justify-content: center;
 	align-items: center;
 }
@@ -212,13 +228,18 @@ nav ul li a {
 /* -------------------------------------------------------------------------- */
 /* projects and tasks */
 
-#project-form {
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.create-form {
+	min-height: 300px;
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;
 	background-color: var(--solid);
 	padding: 2rem;
-	margin-bottom: 2rem;
 }
 
 .project-grid {
@@ -234,16 +255,16 @@ nav ul li a {
 }
 
 .card {
-	min-height: 280px;
+	min-height: 300px;
 	margin: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: var(--solid);
 	border-radius: 1rem;
-	padding: 1.5rem;
+	padding: 2rem;
 	box-sizing: border-box;
-	transition: transform 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 .card:hover {
@@ -262,6 +283,11 @@ nav ul li a {
 	gap: 0.5rem;
 }
 
+.create-form .button-actions,
+.edit-form .button-actions {
+	margin-top: 1rem;
+}
+
 .viewBtn,
 .auth-page button,
 .editSaveBtn,
@@ -269,10 +295,29 @@ nav ul li a {
 	background: #73763d;
 }
 
+.toggleFormBtn {
+	font-size: 1.5rem;
+	border-radius: 1rem;
+	min-height: 300px;
+	display: flex;
+	margin: 0;
+}
+
+.toggleFormBtn img {
+	width: 40px;
+	height: 40px;
+	transition: all 0.4s ease;
+}
+
+.toggleFormBtn:hover img {
+	transform: rotate(90deg);
+}
+
 .toggleFormBtn,
 .backBtn {
 	background-color: var(--accent2);
 	padding: 0.5rem 1rem;
+	margin: 0;
 }
 
 .editBtn {
@@ -290,7 +335,7 @@ nav ul li a {
 }
 
 .date {
-	color: var(--text2);
+	color: var(--text4);
 	font-size: 0.9rem;
 }
 
@@ -307,11 +352,6 @@ nav ul li a {
 	flex: 1;
 }
 
-.edit-form textarea {
-	flex: 1;
-	resize: none;
-}
-
 #edit-form-input {
 	display: flex;
 	flex-direction: column;
@@ -319,8 +359,9 @@ nav ul li a {
 	width: 100%;
 }
 
-.toggleFormBtn {
-	margin-bottom: 1rem;
+.empty-message {
+	color: var(--text3);
+	margin: 1rem auto;
 }
 
 .reveal-animation {

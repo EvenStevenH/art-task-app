@@ -39,8 +39,23 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 						/>
 
 						<div className="button-actions">
-							<button type="submit">Save</button>
-							<button onClick={handleEditToggle}>Cancel</button>
+							<button
+								className="editSaveBtn"
+								type="submit"
+							>
+								<img
+									src="/src/components/icons/save.svg"
+									alt="Save icon"
+								/>
+								Save
+							</button>
+							<button onClick={handleEditToggle}>
+								<img
+									src="/src/components/icons/cancel.svg"
+									alt="Cancel icon"
+								/>
+								Cancel
+							</button>
 						</div>
 					</form>
 				</>
@@ -54,7 +69,9 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 						</p>
 
 						<p className="description">{task.description}</p>
+					</div>
 
+					<div>
 						<select
 							value={task.status}
 							onChange={(e) => onUpdate(task._id, e.target.value)}
@@ -63,9 +80,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 							<option>In Progress</option>
 							<option>Done</option>
 						</select>
-					</div>
-
-					<div>
+						
 						<div className="button-actions">
 							<button
 								className="editBtn"

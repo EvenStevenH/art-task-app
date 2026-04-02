@@ -17,7 +17,7 @@ export async function createProject(req, res) {
 export async function getAllProjects(req, res) {
 	try {
 		const projects = await Project.find({ user: req.user._id })
-			.sort({ createdAt: -1 }) // new to old
+			.sort({ createdAt: 1 }) // old to new
 			.populate("user", "username"); // id in "user" > match with id from model > only keep 'username' field
 
 		res.status(200).json(projects);

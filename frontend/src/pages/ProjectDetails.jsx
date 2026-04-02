@@ -76,71 +76,10 @@ export default function ProjectTasks() {
 	if (loading) return <Spinner />;
 
 	return (
-		<div>
+		<main>
 			<h1>Project Tasks</h1>
 
-			{!isFormVisible && (
-				<button
-					className="toggleFormBtn"
-					onClick={() => setIsFormVisible(!isFormVisible)}
-				>
-					<img
-						src="/src/components/icons/add.svg"
-						alt="Add icon"
-					/>
-					Add New Task
-				</button>
-			)}
-
-			{isFormVisible && (
-				<form
-					id="project-form"
-					className="reveal-animation"
-					onSubmit={handleSubmit}
-				>
-					<h2>Create a new task!</h2>
-
-					<label htmlFor="task-title">Title:</label>
-					<input
-						type="text"
-						id="task-title"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						placeholder="Task title"
-						required
-						autoFocus
-					/>
-
-					<label htmlFor="task-description">Description:</label>
-					<textarea
-						id="task-description"
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-						placeholder="About my task..."
-					/>
-
-					<label htmlFor="task-status">Status:</label>
-					<select
-						id="task-status"
-						value={status}
-						onChange={(e) => setStatus(e.target.value)}
-					>
-						<option>To Do</option>
-						<option>In Progress</option>
-						<option>Done</option>
-					</select>
-
-					<div className="button-actions">
-						<button type="submit">Add Task</button>
-						<button
-							type="button"
-							onClick={() => setIsFormVisible(false)}
-						>
-							Cancel
-						</button>
-					</div>
-				</form>
-			)}
+			{tasks.length < 1 && <div className="empty-message">No tasks. Let's create something today!</div>}
 
 			<div className="task-grid">
 				{tasks.map((task) => (
@@ -155,19 +94,88 @@ export default function ProjectTasks() {
 						client={client}
 					/>
 				))}
+
+				{!isFormVisible && (
+					<button
+						className="toggleFormBtn"
+						onClick={() => setIsFormVisible(!isFormVisible)}
+					>
+						<img
+							src="/src/components/icons/add.svg"
+							alt="Add icon"
+						/>
+						{tasks.length < 1 ? `Your first task!` : `New Task`}
+					</button>
+				)}
+
+				{isFormVisible && (
+					<form
+						className="create-form reveal-animation"
+						onSubmit={handleSubmit}
+					>
+						<h2>Create a new task!</h2>
+
+						<label htmlFor="task-title">Title:</label>
+						<input
+							type="text"
+							id="task-title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							placeholder="New Task"
+							required
+							autoFocus
+						/>
+
+						<label htmlFor="task-description">Description:</label>
+						<textarea
+							id="task-description"
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+							placeholder="About my task..."
+						/>
+
+						<label htmlFor="task-status">Status:</label>
+						<select
+							id="task-status"
+							value={status}
+							onChange={(e) => setStatus(e.target.value)}
+						>
+							<option>To Do</option>
+							<option>In Progress</option>
+							<option>Done</option>
+						</select>
+
+						<div className="button-actions">
+							<button
+								className="addNewBtn"
+								type="submit"
+							>
+								<img
+									src="/src/components/icons/add.svg"
+									alt="Add icon"
+								/>
+								Add Task
+							</button>
+							<button
+								type="button"
+								onClick={() => setIsFormVisible(false)}
+							>
+								Cancel
+							</button>
+						</div>
+					</form>
+				)}
 			</div>
 
-			{tasks.length > 0 && (
-				<Link to="/dashboard">
-					<button className="backBtn">
-						<img
-							src="/src/components/icons/back.svg"
-							alt="Back icon"
-						/>
-						Back to Dashboard
-					</button>
-				</Link>
-			)}
-		</div>
+			<Link to="/dashboard">
+				<button className="backBtn">
+					<img
+						src="/src/components/icons/back.svg"
+						alt="Back icon"
+					/>
+					Back to Dashboard
+				</button>
+			</Link>
+		</main>
 	);
 }

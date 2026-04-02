@@ -50,7 +50,7 @@ export async function getAllTasks(req, res) {
 			return res.status(403).json({ message: "Not authorized!" });
 		}
 
-		const tasks = await Task.find({ project: project._id });
+		const tasks = await Task.find({ project: project._id }).sort({ createdAt: 1 }); // old to new
 		res.status(200).json(tasks);
 	} catch (error) {
 		res.status(500).json({ message: "An unexpected error occurred." });

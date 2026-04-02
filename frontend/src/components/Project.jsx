@@ -50,9 +50,19 @@ export default function Project({ project, onEdit, onDelete }) {
 								className="editSaveBtn"
 								type="submit"
 							>
+								<img
+									src="/src/components/icons/save.svg"
+									alt="Save icon"
+								/>
 								Save
 							</button>
-							<button onClick={handleEditToggle}>Cancel</button>
+							<button onClick={handleEditToggle}>
+								<img
+									src="/src/components/icons/cancel.svg"
+									alt="Cancel icon"
+								/>
+								Cancel
+							</button>
 						</div>
 					</form>
 				</>

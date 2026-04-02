@@ -66,70 +66,12 @@ export default function Dashboard() {
 	if (loading) return <Spinner />;
 
 	return (
-		<div>
+		<main>
 			<h1>Your Projects</h1>
 
-			{!isFormVisible && (
-				<button
-					className="toggleFormBtn"
-					onClick={() => setIsFormVisible(!isFormVisible)}
-				>
-					<img
-						src="/src/components/icons/add.svg"
-						alt="Add icon"
-					/>
-					Add New Project
-				</button>
-			)}
+			{projects.length < 1 && <div className="empty-message">No projects. Let's create something today!</div>}
 
-			{isFormVisible && (
-				<form
-					id="project-form"
-					className={`reveal-animation ${!isFormVisible ? "hidden" : "visible"}`}
-					onSubmit={handleSubmit}
-				>
-					<h2>Create a new project!</h2>
-
-					<label htmlFor="project-title">Title:</label>
-					<input
-						type="text"
-						id="project-title"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						placeholder="Project title"
-						required
-						autoFocus
-					/>
-
-					<label htmlFor="project-description">Description:</label>
-					<textarea
-						id="project-description"
-						value={description}
-						placeholder="About my project..."
-						onChange={(e) => setDescription(e.target.value)}
-						required
-					/>
-
-					<div className="button-actions">
-						<button
-							className="addNewBtn"
-							type="submit"
-						>
-							Add Project
-						</button>
-						<button
-							type="button"
-							onClick={() => setIsFormVisible(false)}
-						>
-							Cancel
-						</button>
-					</div>
-				</form>
-			)}
-
-			{projects.length < 1 && <div>No projects. Let's create something today!</div>}
-
-			<div className="project-grid">
+			<section className="project-grid">
 				{projects.map((project) => (
 					<Project
 						project={project}
@@ -138,7 +80,68 @@ export default function Dashboard() {
 						onDelete={handleDelete}
 					/>
 				))}
-			</div>
-		</div>
+
+				{!isFormVisible && (
+					<button
+						className="toggleFormBtn"
+						onClick={() => setIsFormVisible(!isFormVisible)}
+					>
+						<img
+							src="/src/components/icons/add.svg"
+							alt="Add icon"
+						/>
+						{projects.length < 1 ? `Your first project!` : `New Project`}
+					</button>
+				)}
+
+				{isFormVisible && (
+					<form
+						id="create-form"
+						className={`create-form reveal-animation ${!isFormVisible ? "hidden" : "visible"}`}
+						onSubmit={handleSubmit}
+					>
+						<h2>Create a new project!</h2>
+
+						<label htmlFor="project-title">Title:</label>
+						<input
+							type="text"
+							id="project-title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							placeholder="New Project"
+							required
+							autoFocus
+						/>
+
+						<label htmlFor="project-description">Description:</label>
+						<textarea
+							id="project-description"
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+							placeholder="About my project..."
+						/>
+
+						<div className="button-actions">
+							<button
+								className="addNewBtn"
+								type="submit"
+							>
+								<img
+									src="/src/components/icons/add.svg"
+									alt="Add icon"
+								/>
+								Add Project
+							</button>
+							<button
+								type="button"
+								onClick={() => setIsFormVisible(false)}
+							>
+								Cancel
+							</button>
+						</div>
+					</form>
+				)}
+			</section>
+		</main>
 	);
 }
