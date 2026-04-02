@@ -4,12 +4,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [title, setTitle] = useState(task.title);
 	const [description, setDescription] = useState(task.description);
-
 	const date = new Date(task.createdAt);
-
-	const handleEditToggle = () => {
-		setIsEditing(!isEditing);
-	};
 
 	const handleEditSubmit = (e) => {
 		e.preventDefault();
@@ -29,13 +24,13 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 							type="text"
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
-							placeholder={task.title}
+							placeholder={task.title || `Task Title`}
 						/>
 
 						<textarea
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
-							placeholder={task.description}
+							placeholder={task.description || `About my task...`}
 						/>
 
 						<div className="button-actions">
@@ -49,7 +44,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 								/>
 								Save
 							</button>
-							<button onClick={handleEditToggle}>
+							<button onClick={() => setIsEditing(!isEditing)}>
 								<img
 									src="/src/components/icons/cancel.svg"
 									alt="Cancel icon"
@@ -80,7 +75,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 							<option>In Progress</option>
 							<option>Done</option>
 						</select>
-						
+
 						<div className="button-actions">
 							<button
 								className="editBtn"

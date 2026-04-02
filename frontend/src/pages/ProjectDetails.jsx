@@ -11,9 +11,9 @@ export default function ProjectTasks() {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [status, setStatus] = useState("To Do");
-	const client = taskClient(projectId);
 	const [isFormVisible, setIsFormVisible] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const client = taskClient(projectId);
 
 	useEffect(() => {
 		async function fetchTasks() {
@@ -77,7 +77,7 @@ export default function ProjectTasks() {
 
 	return (
 		<main>
-			<h1>Project Tasks</h1>
+			<h1>Your Tasks</h1>
 
 			{tasks.length < 1 && <div className="empty-message">No tasks. Let's create something today!</div>}
 

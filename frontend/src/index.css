@@ -169,6 +169,9 @@ select {
 	border: none;
 	background-color: var(--bgLight);
 	color: var(--text);
+}
+
+textarea {
 	flex: 1;
 	resize: none;
 }

@@ -12,10 +12,6 @@ export default function Project({ project, onEdit, onDelete }) {
 		navigate(`/projects/${project._id}/tasks`);
 	};
 
-	const handleEditToggle = () => {
-		setIsEditing(!isEditing);
-	};
-
 	const handleEditSubmit = (e) => {
 		e.preventDefault();
 		onEdit(e, project._id, title, description);
@@ -35,13 +31,13 @@ export default function Project({ project, onEdit, onDelete }) {
 								type="text"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
-								placeholder={project.title}
+								placeholder={project.title || `Project Title`}
 							/>
 
 							<textarea
 								value={description}
 								onChange={(e) => setDescription(e.target.value)}
-								placeholder={project.description}
+								placeholder={project.description || `About my project...`}
 							/>
 						</div>
 
@@ -56,7 +52,7 @@ export default function Project({ project, onEdit, onDelete }) {
 								/>
 								Save
 							</button>
-							<button onClick={handleEditToggle}>
+							<button onClick={() => setIsEditing(!isEditing)}>
 								<img
 									src="/src/components/icons/cancel.svg"
 									alt="Cancel icon"
@@ -90,7 +86,7 @@ export default function Project({ project, onEdit, onDelete }) {
 						</button>
 						<button
 							className="editBtn"
-							onClick={handleEditToggle}
+							onClick={() => setIsEditing(!isEditing)}
 						>
 							<img
 								src="/src/components/icons/edit.svg"
