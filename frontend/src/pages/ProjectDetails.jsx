@@ -142,7 +142,7 @@ export default function ProjectTasks() {
 				</form>
 			)}
 
-			<div className="grid">
+			<div className="task-grid">
 				{tasks.map((task) => (
 					<Task
 						task={task}
@@ -159,7 +159,13 @@ export default function ProjectTasks() {
 
 			{tasks.length > 0 && (
 				<Link to="/dashboard">
-					<button className="backBtn">Back to Dashboard</button>
+					<button className="backBtn">
+						<img
+							src="/src/components/icons/back.svg"
+							alt="Back icon"
+						/>
+						Back to Dashboard
+					</button>
 				</Link>
 			)}
 		</div>

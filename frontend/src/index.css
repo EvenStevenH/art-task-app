@@ -1,6 +1,6 @@
 :root {
 	--text: #2b1a12;
-	--text2: #665840;
+	--text2: #493e2b;
 	--text3: #ebddc2;
 	--bgDark: #85503e;
 	--bgLight: #f8f4e6;
@@ -84,7 +84,8 @@ button {
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
-	transition: transform 0.2s ease;
+	transition: all 0.2s ease;
+	object-fit: contain;
 }
 
 button:hover {
@@ -125,6 +126,7 @@ button a {
 	background-color: var(--solid);
 	border-radius: 1rem;
 	padding: 3rem;
+	/* box-shadow: 5px 5px 5px rgba(42, 41, 41, 0.2); */
 }
 
 .auth-page form {
@@ -219,7 +221,13 @@ nav ul li a {
 	margin-bottom: 2rem;
 }
 
-.grid {
+.project-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	gap: 1rem;
+}
+
+.task-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 1rem;

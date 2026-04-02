@@ -129,7 +129,7 @@ export default function Dashboard() {
 
 			{projects.length < 1 && <div>No projects. Let's create something today!</div>}
 
-			<div className="grid">
+			<div className="project-grid">
 				{projects.map((project) => (
 					<Project
 						project={project}
