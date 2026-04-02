@@ -23,6 +23,27 @@ export default function Dashboard() {
 		fetchProjects();
 	}, []);
 
+	const handleEdit = async (e, projectId, title, description) => {
+		e.preventDefault();
+		try {
+			await projectClient.put(`/${projectId}`, { title, description });
+			setProjects(projects.map((project) => (project._id === projectId ? { ...project, title, description } : project)));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleDelete = async (projectId) => {
+		if (window.confirm("Are you sure you want to delete this project?")) {
+			try {
+				await projectClient.delete(`/${projectId}`);
+				setProjects(projects.filter((project) => project._id !== projectId));
+			} catch (error) {
+				console.error(error);
+			}
+		}
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -68,7 +89,7 @@ export default function Dashboard() {
 					type="text"
 					id="project-description"
 					value={description}
-					placeholder="About my task..."
+					placeholder="About my project..."
 					onChange={(e) => setDescription(e.target.value)}
 					required
 				/>
@@ -80,9 +101,9 @@ export default function Dashboard() {
 				{projects.map((project) => (
 					<Project
 						project={project}
-						projects={projects}
 						key={project._id}
-						setProjects={setProjects}
+						onEdit={handleEdit}
+						onDelete={handleDelete}
 					/>
 				))}
 			</div>

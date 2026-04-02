@@ -47,16 +47,25 @@ export default function ProjectTasks() {
 		}
 	};
 
+	const handleStatusChange = async (taskId, newStatus) => {
+		const { data } = await client.put(`/${taskId}`, {
+			status: newStatus,
+		});
+
+		setTasks(tasks.map((t) => (t._id === taskId ? data : t)));
+	};
+
+	const handleDelete = async (taskId) => {
+		await client.delete(`/${taskId}`);
+		setTasks(tasks.filter((t) => t._id !== taskId));
+	};
+
 	if (loading) {
 		return <div>Loading...</div>;
 	}
 
 	return (
 		<div>
-			<button>
-				<Link to="/dashboard">Back to Dashboard</Link>
-			</button>
-
 			<h1>Project Tasks</h1>
 
 			<form
@@ -84,7 +93,7 @@ export default function ProjectTasks() {
 					placeholder="About my task..."
 				/>
 
-				<label htmlFor="task-status">Description:</label>
+				<label htmlFor="task-status">Status:</label>
 				<select
 					id="task-status"
 					value={status}
@@ -100,16 +109,23 @@ export default function ProjectTasks() {
 
 			<div className="grid">
 				{tasks.map((task) => (
-					<>
-						<Task
-							task={task}
-							tasks={tasks}
-							key={task._id}
-							setTasks={setTasks}
-						/>
-					</>
+					<Task
+						task={task}
+						tasks={tasks}
+						key={task._id}
+						setTasks={setTasks}
+						onUpdate={handleStatusChange}
+						onDelete={handleDelete}
+						client={client}
+					/>
 				))}
 			</div>
+
+			{tasks.length > 0 && (
+				<button className="backBtn">
+					<Link to="/dashboard">Back to Dashboard</Link>
+				</button>
+			)}
 		</div>
 	);
 }

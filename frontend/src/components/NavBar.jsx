@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-// import { userClient } from "../clients/api";
 
 export default function NavBar() {
 	const { user, setUser, loading, logout } = useUser(); // bring in user info from context

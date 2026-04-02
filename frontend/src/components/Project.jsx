@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { projectClient } from "../clients/api";
 
-export default function Project({ project, setProjects, projects }) {
+export default function Project({ project, onEdit, onDelete }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [title, setTitle] = useState(project.title);
 	const [description, setDescription] = useState(project.description);
@@ -10,45 +9,32 @@ export default function Project({ project, setProjects, projects }) {
 	const date = new Date(project.createdAt);
 
 	const handleViewDetails = () => {
-		navigate(`/projects/${project._id}/tasks`); // navigate to tasks page for this project
+		navigate(`/projects/${project._id}/tasks`);
 	};
 
-	const handleEdit = async (e) => {
-		e.preventDefault();
-		try {
-			await projectClient.put(`/${project._id}`, { title, description });
-			setIsEditing(false);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-	const handleDelete = async () => {
-		if (window.confirm("Are you sure you want to delete this project?")) {
-			try {
-				await projectClient.delete(`/${project._id}`);
-				setProjects(projects.filter((p) => p._id !== project._id)); // remove project from state
-			} catch (error) {
-				console.error(error);
-			}
-		}
+	const handleEditToggle = () => {
+		setIsEditing(!isEditing);
 	};
 
 	return (
 		<div className="card">
 			{isEditing ? (
-				<form onSubmit={handleEdit}>
+				<form  onSubmit={(e) => onEdit(e, project._id, title, description)}>
 					<input
 						type="text"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
 					/>
+
 					<textarea
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>
-					<button type="submit">Save</button>
-					<button onClick={() => setIsEditing(false)}>Cancel</button>
+
+					<div id="card-actions">
+						<button type="submit">Save</button>
+						<button onClick={handleEditToggle}>Cancel</button>
+					</div>
 				</form>
 			) : (
 				<>
@@ -74,7 +60,7 @@ export default function Project({ project, setProjects, projects }) {
 						</button>
 						<button
 							className="editBtn"
-							onClick={() => setIsEditing(true)}
+							onClick={handleEditToggle}
 						>
 							<img
 								src="/src/components/icons/edit.svg"
@@ -84,7 +70,7 @@ export default function Project({ project, setProjects, projects }) {
 						</button>
 						<button
 							className="deleteBtn"
-							onClick={() => handleDelete(project._id)}
+							onClick={() => onDelete(project._id)}
 						>
 							<img
 								src="/src/components/icons/delete.svg"

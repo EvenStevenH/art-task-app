@@ -1,18 +1,5 @@
-export default function Task({ task, setTasks, tasks }) {
+export default function Task({ task, onUpdate, onDelete }) {
 	const date = new Date(task.createdAt);
-
-	const handleStatusChange = async (taskId, newStatus) => {
-		const { data } = await client.put(`/${taskId}`, {
-			status: newStatus,
-		});
-
-		setTasks(tasks.map((t) => (t._id === taskId ? data : t)));
-	};
-
-	const handleDelete = async (taskId) => {
-		await client.delete(`/${taskId}`);
-		setTasks(tasks.filter((t) => t._id !== taskId));
-	};
 
 	return (
 		<div className="card">
@@ -43,7 +30,7 @@ export default function Task({ task, setTasks, tasks }) {
 
 				<select
 					value={task.status}
-					onChange={(e) => handleStatusChange(task._id, e.target.value)}
+					onChange={(e) => onUpdate(task._id, e.target.value)}
 				>
 					<option>To Do</option>
 					<option>In Progress</option>
@@ -51,16 +38,6 @@ export default function Task({ task, setTasks, tasks }) {
 				</select>
 
 				<div id="card-actions">
-					{/* <button
-						className="viewBtn"
-						onClick={handleViewDetails}
-					>
-						<img
-							src="/src/components/icons/view.svg"
-							alt="View icon"
-						/>
-						View
-					</button> */}
 					{/* <button
 						className="editBtn"
 						onClick={() => setIsEditing(true)}
@@ -73,7 +50,7 @@ export default function Task({ task, setTasks, tasks }) {
 					</button> */}
 					<button
 						className="deleteBtn"
-						onClick={() => handleDelete(task._id)}
+						onClick={() => onDelete(task._id)}
 					>
 						<img
 							src="/src/components/icons/delete.svg"

@@ -20,25 +20,25 @@ export const projectClient = axios.create({
 
 export const taskClient = (projectId) => {
 	const client = axios.create({
-		baseURL: `${BASE_URL}/api/${projectId}/tasks`,
+		baseURL: `${BASE_URL}/api/projects/${projectId}/tasks`,
 		headers: {
 			Authorization: `Bearer ${token()}`,
 		},
 	});
 
 	client.interceptors.request.use((req) => {
-		if (token) {
+		if (token()) {
 			req.headers.Authorization = `Bearer ${token()}`;
 		}
 		return req;
 	});
 
-	return client; // return configured axios instance
+	return client; // reconfigured axios instance
 };
 
 // use the latest version of token in localStorage
 projectClient.interceptors.request.use((req) => {
-	if (token) {
+	if (token()) {
 		req.headers.Authorization = `Bearer ${token()}`;
 	}
 	return req;
