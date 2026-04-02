@@ -7,6 +7,7 @@ export default function Dashboard() {
 	const [projects, setProjects] = useState([]);
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
+	const [isFormVisible, setIsFormVisible] = useState(false);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -53,9 +54,10 @@ export default function Dashboard() {
 			const { data } = await projectClient.post("/", { title, description });
 			setProjects([data, ...projects]);
 
-			// reset the form
+			// reset and hide the form
 			setTitle("");
 			setDescription("");
+			setIsFormVisible(false);
 		} catch (err) {
 			console.log(err);
 		}
@@ -67,34 +69,61 @@ export default function Dashboard() {
 		<div>
 			<h1>Your Projects</h1>
 
-			<form
-				id="project-form"
-				onSubmit={handleSubmit}
-			>
-				<h2>Create a new project!</h2>
+			{!isFormVisible && (
+				<button
+					className="toggleFormBtn"
+					onClick={() => setIsFormVisible(!isFormVisible)}
+				>
+					Add New Project
+				</button>
+			)}
 
-				<label htmlFor="project-title">Title:</label>
-				<input
-					type="text"
-					id="project-title"
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-					placeholder="Project title"
-					required
-				/>
+			{isFormVisible && (
+				<form
+					id="project-form"
+					className={`reveal-animation ${!isFormVisible ? "hidden" : "visible"}`}
+					onSubmit={handleSubmit}
+				>
+					<h2>Create a new project!</h2>
 
-				<label htmlFor="project-description">Description:</label>
-				<textarea
-					type="text"
-					id="project-description"
-					value={description}
-					placeholder="About my project..."
-					onChange={(e) => setDescription(e.target.value)}
-					required
-				/>
+					<label htmlFor="project-title">Title:</label>
+					<input
+						type="text"
+						id="project-title"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						placeholder="Project title"
+						required
+						autoFocus
+					/>
 
-				<button>Add Project</button>
-			</form>
+					<label htmlFor="project-description">Description:</label>
+					<textarea
+						id="project-description"
+						value={description}
+						placeholder="About my project..."
+						onChange={(e) => setDescription(e.target.value)}
+						required
+					/>
+
+					<div className="button-actions">
+						<button
+							className="addNewBtn"
+							type="submit"
+						>
+							Add Project
+						</button>
+						<button
+							type="button"
+							onClick={() => setIsFormVisible(false)}
+						>
+							Cancel
+						</button>
+					</div>
+				</form>
+			)}
+
+			{projects.length < 1 && <div>No projects. Let's create something today!</div>}
 
 			<div className="grid">
 				{projects.map((project) => (

@@ -30,21 +30,28 @@ export default function Project({ project, onEdit, onDelete }) {
 						className="edit-form"
 						onSubmit={handleEditSubmit}
 					>
-						<input
-							type="text"
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-							placeholder={project.title}
-						/>
+						<div id="edit-form-input">
+							<input
+								type="text"
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+								placeholder={project.title}
+							/>
 
-						<textarea
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
-							placeholder={project.description}
-						/>
+							<textarea
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+								placeholder={project.description}
+							/>
+						</div>
 
-						<div id="card-actions">
-							<button type="submit">Save</button>
+						<div className="button-actions">
+							<button
+								className="editSaveBtn"
+								type="submit"
+							>
+								Save
+							</button>
 							<button onClick={handleEditToggle}>Cancel</button>
 						</div>
 					</form>
@@ -55,12 +62,12 @@ export default function Project({ project, onEdit, onDelete }) {
 						<h3>{project.title}</h3>
 						<p id="project-username">by {project.user.username}</p>
 						<p className="date">
-							{date.toLocaleDateString()} {date.toLocaleTimeString()}
+							{date.toLocaleDateString()} {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
 						</p>
 						<p className="description">{project.description}</p>
 					</div>
 
-					<div id="card-actions">
+					<div className="button-actions">
 						<button
 							className="viewBtn"
 							onClick={handleViewDetails}

@@ -12,6 +12,7 @@ export default function ProjectTasks() {
 	const [description, setDescription] = useState("");
 	const [status, setStatus] = useState("To Do");
 	const client = taskClient(projectId);
+	const [isFormVisible, setIsFormVisible] = useState(false);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -43,6 +44,7 @@ export default function ProjectTasks() {
 			setTitle("");
 			setDescription("");
 			setStatus("To Do");
+			setIsFormVisible(false);
 		} catch (err) {
 			console.log(err);
 		}
@@ -77,44 +79,64 @@ export default function ProjectTasks() {
 		<div>
 			<h1>Project Tasks</h1>
 
-			<form
-				id="project-form"
-				onSubmit={handleSubmit}
-			>
-				<h2>Create a new task!</h2>
-
-				<label htmlFor="task-title">Title:</label>
-				<input
-					type="text"
-					id="task-title"
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-					placeholder="Task title"
-					required
-				/>
-
-				<label htmlFor="task-description">Description:</label>
-				<textarea
-					type="text"
-					id="task-description"
-					value={description}
-					onChange={(e) => setDescription(e.target.value)}
-					placeholder="About my task..."
-				/>
-
-				<label htmlFor="task-status">Status:</label>
-				<select
-					id="task-status"
-					value={status}
-					onChange={(e) => setStatus(e.target.value)}
+			{!isFormVisible && (
+				<button
+					className="toggleFormBtn"
+					onClick={() => setIsFormVisible(!isFormVisible)}
 				>
-					<option>To Do</option>
-					<option>In Progress</option>
-					<option>Done</option>
-				</select>
+					Add New Task
+				</button>
+			)}
 
-				<button>Add Task</button>
-			</form>
+			{isFormVisible && (
+				<form
+					id="project-form"
+					className="reveal-animation"
+					onSubmit={handleSubmit}
+				>
+					<h2>Create a new task!</h2>
+
+					<label htmlFor="task-title">Title:</label>
+					<input
+						type="text"
+						id="task-title"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						placeholder="Task title"
+						required
+						autoFocus
+					/>
+
+					<label htmlFor="task-description">Description:</label>
+					<textarea
+						id="task-description"
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
+						placeholder="About my task..."
+					/>
+
+					<label htmlFor="task-status">Status:</label>
+					<select
+						id="task-status"
+						value={status}
+						onChange={(e) => setStatus(e.target.value)}
+					>
+						<option>To Do</option>
+						<option>In Progress</option>
+						<option>Done</option>
+					</select>
+
+					<div className="button-actions">
+						<button type="submit">Add Task</button>
+						<button
+							type="button"
+							onClick={() => setIsFormVisible(false)}
+						>
+							Cancel
+						</button>
+					</div>
+				</form>
+			)}
 
 			<div className="grid">
 				{tasks.map((task) => (
@@ -132,9 +154,9 @@ export default function ProjectTasks() {
 			</div>
 
 			{tasks.length > 0 && (
-				<button className="backBtn">
-					<Link to="/dashboard">Back to Dashboard</Link>
-				</button>
+				<Link to="/dashboard">
+					<button className="backBtn">Back to Dashboard</button>
+				</Link>
 			)}
 		</div>
 	);

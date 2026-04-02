@@ -54,7 +54,7 @@ h2 {
 
 body {
 	margin: 0;
-	padding: 2rem;
+	padding: 3rem;
 	border: none;
 }
 
@@ -70,10 +70,12 @@ button {
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
+	transition: transform 0.2s ease;
 }
 
 button:hover {
 	filter: brightness(110%);
+	transform: translateY(-2px);
 }
 
 button:active {
@@ -200,7 +202,7 @@ nav {
 }
 
 .card {
-	min-height: 250px;
+	min-height: 280px;
 	margin: 0;
 	display: flex;
 	flex-direction: column;
@@ -213,17 +215,25 @@ nav {
 }
 
 .card:hover {
-	transform: translateY(-5px);
+	transform: translateY(-4px);
 }
 
-#card-actions {
+.task-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.button-actions {
+	margin-top: auto;
 	display: flex;
 	flex-direction: row;
 	gap: 0.5rem;
 }
 
 .viewBtn,
-.auth-page button {
+.auth-page button,
+.editSaveBtn,
+.addNewBtn {
 	background: rgb(139, 148, 50);
 }
 
@@ -237,7 +247,8 @@ nav {
 
 .backBtn {
 	padding: 1rem 1.5rem;
-	margin-top: 2rem;
+	margin: 3rem 0 auto;
+	display: inline-flex;
 }
 
 .date {
@@ -247,17 +258,60 @@ nav {
 
 .description {
 	margin: 1rem 0 2rem;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	overflow-y: auto;
 }
 
 .edit-form {
 	display: flex;
 	flex-direction: column;
+	flex: 1;
 }
 
 .edit-form textarea {
-	min-height: 80px;
-	resize: vertical;
+	flex: 1;
+	resize: none;
 }
+
+#edit-form-input {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	width: 100%;
+}
+
+.toggleFormBtn {
+	margin-bottom: 1rem;
+}
+
+.reveal-animation {
+	opacity: 0;
+	transform: translateY(-10px);
+	animation: fadeSlideIn 0.25s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* .reveal-animation.hidden {
+	animation: fadeSlideOut 0.25s ease forwards;
+}
+
+@keyframes fadeSlideOut {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+} */
 
 /* -------------------------------------------------------------------------- */
 /* loader */
