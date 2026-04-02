@@ -1,6 +1,6 @@
 :root {
 	--text: #eceae4;
-	--text2: #d1cfc9;
+	--text2: #9b9994;
 	--bg: #111;
 	--accent: #ea9b26;
 
@@ -143,7 +143,7 @@ select {
 	color: black;
 }
 
-input:last-of-type {
+.auth-page form input:last-of-type {
 	margin-bottom: 1.5rem;
 }
 
@@ -238,4 +238,54 @@ nav {
 .backBtn {
 	padding: 1rem 1.5rem;
 	margin-top: 2rem;
+}
+
+.date {
+	color: var(--text2);
+	font-size: 0.9rem;
+}
+
+.description {
+	margin: 1rem 0 2rem;
+}
+
+.edit-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.edit-form textarea {
+	min-height: 80px;
+	resize: vertical;
+}
+
+/* -------------------------------------------------------------------------- */
+/* loader */
+
+.spinner {
+	text-align: center;
+	padding: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.loader {
+	border: 5px solid #ddd;
+	border-top: 5px solid #ff7043;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	margin: 0 auto 10px auto;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }

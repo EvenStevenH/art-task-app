@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { projectClient } from "../clients/api";
 import Project from "../components/Project";
+import Spinner from "../components/Spinner";
 
 export default function Dashboard() {
 	const [projects, setProjects] = useState([]);
@@ -60,9 +61,7 @@ export default function Dashboard() {
 		}
 	};
 
-	if (loading) {
-		return <div>Loading...</div>;
-	}
+	if (loading) return <Spinner />;
 
 	return (
 		<div>

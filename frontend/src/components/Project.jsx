@@ -16,35 +16,48 @@ export default function Project({ project, onEdit, onDelete }) {
 		setIsEditing(!isEditing);
 	};
 
+	const handleEditSubmit = (e) => {
+		e.preventDefault();
+		onEdit(e, project._id, title, description);
+		setIsEditing(false);
+	};
+
 	return (
 		<div className="card">
 			{isEditing ? (
-				<form  onSubmit={(e) => onEdit(e, project._id, title, description)}>
-					<input
-						type="text"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-					/>
+				<>
+					<form
+						className="edit-form"
+						onSubmit={handleEditSubmit}
+					>
+						<input
+							type="text"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							placeholder={project.title}
+						/>
 
-					<textarea
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-					/>
+						<textarea
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+							placeholder={project.description}
+						/>
 
-					<div id="card-actions">
-						<button type="submit">Save</button>
-						<button onClick={handleEditToggle}>Cancel</button>
-					</div>
-				</form>
+						<div id="card-actions">
+							<button type="submit">Save</button>
+							<button onClick={handleEditToggle}>Cancel</button>
+						</div>
+					</form>
+				</>
 			) : (
 				<>
 					<div id="project-info">
 						<h3>{project.title}</h3>
 						<p id="project-username">by {project.user.username}</p>
-						<div>
+						<p className="date">
 							{date.toLocaleDateString()} {date.toLocaleTimeString()}
-						</div>
-						<p>{project.description}</p>
+						</p>
+						<p className="description">{project.description}</p>
 					</div>
 
 					<div id="card-actions">

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { taskClient } from "../clients/api";
 import Task from "../components/Task";
+import Spinner from "../components/Spinner";
 
 export default function ProjectTasks() {
 	const { projectId } = useParams();
@@ -55,14 +56,22 @@ export default function ProjectTasks() {
 		setTasks(tasks.map((t) => (t._id === taskId ? data : t)));
 	};
 
+	const handleEdit = async (e, taskId, title, description) => {
+		e.preventDefault();
+		try {
+			const { data } = await client.put(`/${taskId}`, { title, description });
+			setTasks(tasks.map((task) => (task._id === taskId ? data : task)));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const handleDelete = async (taskId) => {
 		await client.delete(`/${taskId}`);
 		setTasks(tasks.filter((t) => t._id !== taskId));
 	};
 
-	if (loading) {
-		return <div>Loading...</div>;
-	}
+	if (loading) return <Spinner />;
 
 	return (
 		<div>
@@ -114,6 +123,7 @@ export default function ProjectTasks() {
 						tasks={tasks}
 						key={task._id}
 						setTasks={setTasks}
+						onEdit={handleEdit}
 						onUpdate={handleStatusChange}
 						onDelete={handleDelete}
 						client={client}
