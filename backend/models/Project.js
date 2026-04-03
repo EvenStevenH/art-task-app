@@ -15,6 +15,10 @@ const projectSchema = new mongoose.Schema(
 			ref: "User", // for ownership > enables auth checks later
 			required: true,
 		},
+		image: {
+			type: String,
+			default: "/images/default-banner.png",
+		},
 	},
 	{
 		timestamps: true, // adds createdAt and updatedAt

@@ -60,48 +60,59 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 				</>
 			) : (
 				<>
-					<div id="project-info">
-						<h3>{project.title}</h3>
-						<p id="project-username">by {project.user.username}</p>
-						<p className="date">
-							{date.toLocaleDateString()} {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-						</p>
-						<p className="description">{project.description}</p>
-					</div>
+					<img
+						id="project-image"
+						src={project.image}
+						alt={`${project.title}'s project image`}
+						onClick={() => {
+							isInDashboard ? navigate(`/projects/${project._id}/tasks`) : null;
+						}}
+					/>
 
-					<div className="button-actions">
-						<button
-							className="viewBtn"
-							onClick={() => {
-								isInDashboard ? navigate(`/projects/${project._id}/tasks`) : navigate(`/dashboard`);
-							}}
-						>
-							<img
-								src="/src/components/icons/view.svg"
-								alt="View icon"
-							/>
-							{isInDashboard ? `View` : `Dashboard`}
-						</button>
-						<button
-							className="editBtn"
-							onClick={() => setIsEditing(!isEditing)}
-						>
-							<img
-								src="/src/components/icons/edit.svg"
-								alt="Edit icon"
-							/>
-							Edit
-						</button>
-						<button
-							className="deleteBtn"
-							onClick={() => onDelete(project._id)}
-						>
-							<img
-								src="/src/components/icons/delete.svg"
-								alt="Delete icon"
-							/>
-							Delete
-						</button>
+					<div id="project-info">
+						<div>
+							<h3>{project.title}</h3>
+							<p id="project-username">by {project.user.username}</p>
+							<p className="date">
+								{date.toLocaleDateString()} {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+							</p>
+							<p className="description">{project.description}</p>
+						</div>
+						
+						<div className="button-actions">
+							<button
+								className="viewBtn"
+								onClick={() => {
+									isInDashboard ? navigate(`/projects/${project._id}/tasks`) : navigate(`/dashboard`);
+								}}
+							>
+								<img
+									src="/src/components/icons/view.svg"
+									alt="View icon"
+								/>
+								{isInDashboard ? `View` : `Dashboard`}
+							</button>
+							<button
+								className="editBtn"
+								onClick={() => setIsEditing(!isEditing)}
+							>
+								<img
+									src="/src/components/icons/edit.svg"
+									alt="Edit icon"
+								/>
+								Edit
+							</button>
+							<button
+								className="deleteBtn"
+								onClick={() => onDelete(project._id)}
+							>
+								<img
+									src="/src/components/icons/delete.svg"
+									alt="Delete icon"
+								/>
+								Delete
+							</button>
+						</div>
 					</div>
 				</>
 			)}

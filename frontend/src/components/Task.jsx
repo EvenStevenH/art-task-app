@@ -62,47 +62,49 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 				</>
 			) : (
 				<>
-					<div className="task-info">
-						<h3>{task.title}</h3>
+					<div id="task-info">
+						<div>
+							<h3>{task.title}</h3>
 
-						<p className="date">
-							{date.toLocaleDateString()} {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-						</p>
+							<p className="date">
+								{date.toLocaleDateString()} {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+							</p>
 
-						<p className="description">{task.description}</p>
-					</div>
+							<p className="description">{task.description}</p>
+						</div>
 
-					<div>
-						<select
-							value={task.status}
-							onChange={(e) => onUpdate(task._id, e.target.value)}
-						>
-							<option>To Do</option>
-							<option>In Progress</option>
-							<option>Done</option>
-						</select>
-
-						<div className="button-actions">
-							<button
-								className="editBtn"
-								onClick={() => setIsEditing(true)}
+						<div>
+							<select
+								value={task.status}
+								onChange={(e) => onUpdate(task._id, e.target.value)}
 							>
-								<img
-									src="/src/components/icons/edit.svg"
-									alt="Edit icon"
-								/>
-								Edit
-							</button>
-							<button
-								className="deleteBtn"
-								onClick={() => onDelete(task._id)}
-							>
-								<img
-									src="/src/components/icons/delete.svg"
-									alt="Delete icon"
-								/>
-								Delete
-							</button>
+								<option>To Do</option>
+								<option>In Progress</option>
+								<option>Done</option>
+							</select>
+
+							<div className="button-actions">
+								<button
+									className="editBtn"
+									onClick={() => setIsEditing(true)}
+								>
+									<img
+										src="/src/components/icons/edit.svg"
+										alt="Edit icon"
+									/>
+									Edit
+								</button>
+								<button
+									className="deleteBtn"
+									onClick={() => onDelete(task._id)}
+								>
+									<img
+										src="/src/components/icons/delete.svg"
+										alt="Delete icon"
+									/>
+									Delete
+								</button>
+							</div>
 						</div>
 					</div>
 				</>

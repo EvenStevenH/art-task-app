@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { taskClient, projectClient } from "../clients/api";
@@ -6,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Project from "../components/Project";
 import Task from "../components/Task";
 import Spinner from "../components/Spinner";
+import Footer from "../components/Footer";
 
 export default function ProjectTasks() {
 	const { projectId } = useParams();
@@ -118,6 +118,7 @@ export default function ProjectTasks() {
 				onEdit={handleProjectEdit}
 				onDelete={handleProjectDelete}
 				isInDashboard={false}
+				id="project-info-card"
 			/>
 
 			<h2>Tasks</h2>
@@ -154,7 +155,10 @@ export default function ProjectTasks() {
 				))}
 			</div> */}
 
-			<div className="task-grid">
+			<div
+				className="grid"
+				id="task-grid"
+			>
 				{tasks.map((task) => (
 					<Task
 						task={task}
@@ -240,15 +244,7 @@ export default function ProjectTasks() {
 				)}
 			</div>
 
-			<Link to="/dashboard">
-				<button className="backBtn">
-					<img
-						src="/src/components/icons/back.svg"
-						alt="Back icon"
-					/>
-					Back to Dashboard
-				</button>
-			</Link>
+			<Footer />
 		</main>
 	);
 }

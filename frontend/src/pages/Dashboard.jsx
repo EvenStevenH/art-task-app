@@ -71,7 +71,10 @@ export default function Dashboard() {
 
 			{projects.length < 1 && <div className="empty-message">No projects. Let's create something today!</div>}
 
-			<section className="project-grid">
+			<section
+				className="grid"
+				id="project-grid"
+			>
 				{projects.map((project) => (
 					<Project
 						project={project}
