@@ -112,7 +112,6 @@ export default function ProjectTasks() {
 				onEdit={handleProjectEdit}
 				onDelete={handleProjectDelete}
 				isInDashboard={false}
-				id="project-info-card"
 			/>
 
 			<h2>Tasks</h2>

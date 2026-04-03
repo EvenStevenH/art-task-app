@@ -3,7 +3,7 @@
 	--text2: #493e2b;
 	--text3: #ebddc2;
 	--text4: #6d5e44;
-	--bgDark: #85503e;
+	--bgDark: #73523c;
 	--bgLight: #f8f4e6;
 	--solid: #ecdcc2;
 	--accent: #c07607;
@@ -87,7 +87,7 @@ button {
 	border-radius: 0.5rem;
 	border: none;
 	letter-spacing: 1px;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -116,6 +116,36 @@ button a {
 	color: inherit;
 }
 
+label {
+	margin-bottom: 0.2rem;
+}
+
+input,
+textarea,
+select {
+	width: 100%;
+	font-size: inherit;
+	font-family: inherit;
+	font-size: 1rem;
+	margin-bottom: 0.6rem;
+	padding: 0.5rem 1rem 0.5rem;
+	border-radius: 0.5rem;
+	border: #cdbca0 solid 1px;
+	background-color: var(--bgLight);
+	color: var(--text);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: var(--accent) solid 2px;
+}
+
+textarea {
+	flex: 1;
+	resize: none;
+}
+
 /* -------------------------------------------------------------------------- */
 /* login and register page */
 
@@ -135,7 +165,8 @@ button a {
 	background-color: var(--solid);
 	border-radius: 1rem;
 	padding: 3rem;
-	/* box-shadow: 5px 5px 5px rgba(42, 41, 41, 0.2); */
+	box-shadow: 5px 5px 5px rgba(42, 41, 41, 0.2);
+	border-bottom: 0.3rem solid #cbb190;
 }
 
 .auth-page form {
@@ -156,30 +187,6 @@ button a {
 }
 .auth-link a {
 	text-decoration: underline;
-}
-
-label {
-	margin-bottom: 0.2rem;
-}
-
-input,
-textarea,
-select {
-	width: 100%;
-	font-size: inherit;
-	font-family: inherit;
-	font-size: 1rem;
-	margin-bottom: 0.6rem;
-	padding: 0.5rem 1rem 0.5rem;
-	border-radius: 0.5rem;
-	border: none;
-	background-color: var(--bgLight);
-	color: var(--text);
-}
-
-textarea {
-	flex: 1;
-	resize: none;
 }
 
 .auth-page form input:last-of-type {
@@ -221,7 +228,7 @@ nav ul li a {
 }
 
 #profileImage {
-	outline: 0.2rem solid var(--text3);
+	outline: 0.16rem solid var(--text3);
 	height: 60px;
 	width: 60px;
 	border-radius: 50%;
@@ -281,10 +288,8 @@ header {
 	box-sizing: border-box;
 	transition: all 0.2s ease;
 	overflow: hidden;
-}
-
-#project-info-card {
-	flex-direction: row;
+	box-shadow: 5px 5px 5px rgba(42, 41, 41, 0.2);
+	border-bottom: 0.3rem solid #cbb190;
 }
 
 .card:hover,
@@ -307,7 +312,7 @@ header {
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 2rem;
-	gap: 1.5rem
+	gap: 1.5rem;
 }
 
 .button-actions {
@@ -383,6 +388,11 @@ footer {
 	display: inline-flex;
 	width: max-content;
 	flex: 0 1 auto;
+	box-shadow: 4px 4px 4px rgba(42, 41, 41, 0.2);
+}
+
+#backToTopBtn {
+	margin-left: auto;
 }
 
 .date {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { projectClient } from "../clients/api";
 import Project from "../components/Project";
 import Spinner from "../components/Spinner";
+import Footer from "../components/Footer";
 
 export default function Dashboard() {
 	const [projects, setProjects] = useState([]);
@@ -155,6 +156,8 @@ export default function Dashboard() {
 					</form>
 				)}
 			</section>
+
+			<Footer />
 		</main>
 	);
 }

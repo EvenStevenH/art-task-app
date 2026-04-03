@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 export default function Footer() {
 	const { user } = useUser(); // bring in user info from context
+	const location = useLocation();
+	const isProjectDetails = location.pathname.startsWith("/projects/"); // check if we're on project details page
 
 	const scrollToTop = () => {
 		window.scrollTo({
@@ -15,15 +17,17 @@ export default function Footer() {
 		<>
 			{user ? (
 				<footer>
-					<Link to="/dashboard">
-						<button id="backBtn">
-							<img
-								src="/src/components/icons/back.svg"
-								alt="Back icon"
-							/>
-							Dashboard
-						</button>
-					</Link>
+					{isProjectDetails && (
+						<Link to="/dashboard">
+							<button id="backBtn">
+								<img
+									src="/src/components/icons/back.svg"
+									alt="Back icon"
+								/>
+								Dashboard
+							</button>
+						</Link>
+					)}
 
 					<button
 						id="backToTopBtn"
