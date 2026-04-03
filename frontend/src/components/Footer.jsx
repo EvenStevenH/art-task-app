@@ -24,7 +24,7 @@ export default function Footer() {
 									src="/src/components/icons/back.svg"
 									alt="Back icon"
 								/> */}
-								<span class="material-symbols-outlined">arrow_back_ios</span>
+								<span className="material-symbols-outlined">arrow_back_ios</span>
 								Dashboard
 							</button>
 						</Link>
@@ -38,7 +38,7 @@ export default function Footer() {
 							src="/src/components/icons/top.svg"
 							alt="Top icon"
 						/> */}
-						<span class="material-symbols-outlined">arrow_upward</span>
+						<span className="material-symbols-outlined">arrow_upward</span>
 						Back to Top
 					</button>
 				</footer>

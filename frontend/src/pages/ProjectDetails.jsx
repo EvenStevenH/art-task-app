@@ -106,13 +106,18 @@ export default function ProjectTasks() {
 	return (
 		<main>
 			<h1>{project.title}</h1>
-
-			<Project
-				project={project}
-				onEdit={handleProjectEdit}
-				onDelete={handleProjectDelete}
-				isInDashboard={false}
-			/>
+			
+			<div
+				className="card" id="project-card"
+				key={project._id}
+			>
+				<Project
+					project={project}
+					onEdit={handleProjectEdit}
+					onDelete={handleProjectDelete}
+					isInDashboard={false}
+				/>
+			</div>
 
 			<h2>Tasks</h2>
 
@@ -144,7 +149,7 @@ export default function ProjectTasks() {
 							src="/src/components/icons/add_beige.svg"
 							alt="Add icon"
 						/> */}
-						<span class="material-symbols-outlined">add</span>
+						<span className="material-symbols-outlined">add</span>
 						{tasks.length < 1 ? `Your first task!` : `New Task`}
 					</button>
 				)}
@@ -195,7 +200,7 @@ export default function ProjectTasks() {
 									src="/src/components/icons/add_white.svg"
 									alt="Add icon"
 								/> */}
-								<span class="material-symbols-outlined">add</span>
+								<span className="material-symbols-outlined">add</span>
 								Add Task
 							</button>
 							<button

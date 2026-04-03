@@ -5,7 +5,7 @@
 	--text4: #6d5e44;
 	--bgDark: #73523c;
 	--bgLight: #f8f4e6;
-	--solid: #ecdcc2;
+	--solid: #ede2c2;
 	--accent: #c07607;
 	--accent2: #ba875f;
 	--accent3: #988a7f;
@@ -14,6 +14,8 @@
 	--heading: system-ui, "Segoe UI", Roboto, sans-serif;
 	--mono: ui-monospace, Consolas, monospace;
 
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 	font: 18px/145% var(--sans);
 	letter-spacing: 0.18px;
 	color-scheme: light dark;
@@ -167,7 +169,7 @@ textarea {
 	border-radius: 1rem;
 	padding: 3rem;
 	box-shadow: 5px 5px 5px rgba(42, 41, 41, 0.2);
-	border-bottom: 0.3rem solid #cbb190;
+	border-bottom: 0.3rem solid rgb(183, 158, 126);
 }
 
 .auth-page form {
@@ -295,7 +297,7 @@ nav ul li a {
 	transition: all 0.2s ease;
 	overflow: hidden;
 	box-shadow: 5px 5px 5px rgba(42, 41, 41, 0.2);
-	border-bottom: 0.3rem solid #cbb190;
+	border-bottom: 0.3rem solid rgb(183, 158, 126);
 }
 
 .card:hover,
@@ -306,7 +308,7 @@ nav ul li a {
 .card #project-image {
 	width: 100%;
 	min-height: 450px;
-	/* max-height: 600px; */
+	max-height: 800px;
 	display: block;
 	object-fit: cover;
 }
@@ -319,6 +321,10 @@ nav ul li a {
 	justify-content: space-between;
 	padding: 2rem;
 	gap: 1.5rem;
+}
+
+#project-card {
+	flex-direction: row;
 }
 
 .button-actions {
@@ -411,8 +417,6 @@ footer {
 .description {
 	margin-top: 0.5rem;
 	max-height: 6rem;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
 	overflow-y: auto;
 }
 
@@ -509,5 +513,16 @@ footer {
 	}
 	to {
 		transform: rotate(360deg);
+	}
+}
+
+@media (max-width: 800px) {
+	.card {
+		flex-wrap: wrap;
+	}
+
+	.card #project-info,
+	.card #task-info {
+		width: 100%;
 	}
 }

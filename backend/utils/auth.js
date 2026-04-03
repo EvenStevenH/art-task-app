@@ -29,7 +29,7 @@ export function signToken(user) {
 		username: user.username,
 		email: user.email,
 		_id: user._id,
-		// profileImage: user.profileImage,
+		profileImage: user.profileImage,
 	};
 
 	return jwt.sign({ data: payload }, jwtSecret, { expiresIn: "2d" }); // create a token

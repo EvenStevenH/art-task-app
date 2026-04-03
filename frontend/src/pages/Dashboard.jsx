@@ -78,13 +78,17 @@ export default function Dashboard() {
 				id="project-grid"
 			>
 				{projects.map((project) => (
-					<Project
-						project={project}
+					<div
+						className="card"
 						key={project._id}
-						onEdit={handleEdit}
-						onDelete={handleDelete}
-						isInDashboard={true}
-					/>
+					>
+						<Project
+							project={project}
+							onEdit={handleEdit}
+							onDelete={handleDelete}
+							isInDashboard={true}
+						/>
+					</div>
 				))}
 
 				{!isFormVisible && (
@@ -96,7 +100,7 @@ export default function Dashboard() {
 							src="/src/components/icons/add_beige.svg"
 							alt="Add icon"
 						/> */}
-						<span class="material-symbols-outlined">add</span>
+						<span className="material-symbols-outlined">add</span>
 						{projects.length < 1 ? `Your first project!` : `New Project`}
 					</button>
 				)}
@@ -145,7 +149,7 @@ export default function Dashboard() {
 									src="/src/components/icons/add_white.svg"
 									alt="Add icon"
 								/> */}
-								<span class="material-symbols-outlined">add</span>
+								<span className="material-symbols-outlined">add</span>
 								Add Project
 							</button>
 							<button

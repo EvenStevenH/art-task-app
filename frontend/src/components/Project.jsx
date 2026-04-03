@@ -16,65 +16,63 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 	};
 
 	return (
-		<div className="card">
+		<>
 			{isEditing ? (
-				<>
-					<form
-						className="edit-form"
-						onSubmit={handleEditSubmit}
-					>
-						<label htmlFor="project-title">Title:</label>
-						<div id="edit-form-input">
-							<input
-								type="text"
-								id="project-title"
-								value={title}
-								onChange={(e) => setTitle(e.target.value)}
-								placeholder={project.title || `Project Title`}
-								required
-								autoFocus
-							/>
+				<form
+					className="edit-form"
+					onSubmit={handleEditSubmit}
+				>
+					<label htmlFor="project-title">Title:</label>
+					<div id="edit-form-input">
+						<input
+							type="text"
+							id="project-title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							placeholder={project.title || `Project Title`}
+							required
+							autoFocus
+						/>
 
-							<label htmlFor="project-description">Description:</label>
-							<textarea
-								id="project-description"
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-								placeholder={project.description || `About my project...`}
-							/>
+						<label htmlFor="project-description">Description:</label>
+						<textarea
+							id="project-description"
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+							placeholder={project.description || `About my project...`}
+						/>
 
-							<label htmlFor="project-image-link">Image (optional):</label>
-							<input
-								id="project-image-link"
-								value={image}
-								onChange={(e) => setImage(e.target.value)}
-								placeholder={project.image || `Link to image...`}
-							/>
-						</div>
+						<label htmlFor="project-image-link">Image (optional):</label>
+						<input
+							id="project-image-link"
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
+							placeholder={project.image || `Link to image...`}
+						/>
+					</div>
 
-						<div className="button-actions">
-							<button
-								className="editSaveBtn"
-								type="submit"
-							>
-								{/* <img
+					<div className="button-actions">
+						<button
+							className="editSaveBtn"
+							type="submit"
+						>
+							{/* <img
 									src="/src/components/icons/save.svg"
 									alt="Save icon"
 								/> */}
-								<span class="material-symbols-outlined">check</span>
-								Save
-							</button>
-							<button onClick={() => setIsEditing(!isEditing)}>
-								{/* <img
+							<span className="material-symbols-outlined">check</span>
+							Save
+						</button>
+						<button onClick={() => setIsEditing(!isEditing)}>
+							{/* <img
 									src="/src/components/icons/cancel.svg"
 									alt="Cancel icon"
 								/> */}
-								<span class="material-symbols-outlined">close</span>
-								Cancel
-							</button>
-						</div>
-					</form>
-				</>
+							<span className="material-symbols-outlined">close</span>
+							Cancel
+						</button>
+					</div>
+				</form>
 			) : (
 				<>
 					<img
@@ -107,7 +105,7 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 									src="/src/components/icons/view.svg"
 									alt="View icon"
 								/> */}
-								<span class="material-symbols-outlined">view_kanban</span>
+								<span className="material-symbols-outlined">view_kanban</span>
 								{isInDashboard ? `View` : `Dashboard`}
 							</button>
 							<button
@@ -118,7 +116,7 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 									src="/src/components/icons/edit.svg"
 									alt="Edit icon"
 								/> */}
-								<span class="material-symbols-outlined">edit_document</span>
+								<span className="material-symbols-outlined">edit_document</span>
 								Edit
 							</button>
 							<button
@@ -129,13 +127,13 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 									src="/src/components/icons/delete.svg"
 									alt="Delete icon"
 								/> */}
-								<span class="material-symbols-outlined">delete</span>
+								<span className="material-symbols-outlined">delete</span>
 								Delete
 							</button>
 						</div>
 					</div>
 				</>
 			)}
-		</div>
+		</>
 	);
 }

@@ -48,7 +48,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 									src="/src/components/icons/save.svg"
 									alt="Save icon"
 								/> */}
-								<span class="material-symbols-outlined">check</span>
+								<span className="material-symbols-outlined">check</span>
 								Save
 							</button>
 							<button onClick={() => setIsEditing(!isEditing)}>
@@ -56,7 +56,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 									src="/src/components/icons/cancel.svg"
 									alt="Cancel icon"
 								/> */}
-								<span class="material-symbols-outlined">close</span>
+								<span className="material-symbols-outlined">close</span>
 								Cancel
 							</button>
 						</div>
@@ -94,7 +94,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 										src="/src/components/icons/edit.svg"
 										alt="Edit icon"
 									/> */}
-									<span class="material-symbols-outlined">edit_document</span>
+									<span className="material-symbols-outlined">edit_document</span>
 									Edit
 								</button>
 								<button
@@ -105,7 +105,7 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 										src="/src/components/icons/delete.svg"
 										alt="Delete icon"
 									/> */}
-									<span class="material-symbols-outlined">delete</span>
+									<span className="material-symbols-outlined">delete</span>
 									Delete
 								</button>
 							</div>
