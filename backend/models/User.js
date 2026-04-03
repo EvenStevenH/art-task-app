@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
 	},
 	profileImage: {
 		type: String,
+		trim: true,
 		default: "/images/default-avatar.png",
 		// match: [/^https?:\/\/.+/, "Must be a valid URL!"],
 	},

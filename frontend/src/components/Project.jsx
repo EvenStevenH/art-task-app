@@ -5,12 +5,13 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [title, setTitle] = useState(project.title);
 	const [description, setDescription] = useState(project.description);
+	const [image, setImage] = useState(project.image);
 	const navigate = useNavigate();
 	const date = new Date(project.createdAt);
 
 	const handleEditSubmit = (e) => {
 		e.preventDefault();
-		onEdit(e, project._id, title, description);
+		onEdit(e, project._id, title, description, image);
 		setIsEditing(false);
 	};
 
@@ -22,18 +23,32 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 						className="edit-form"
 						onSubmit={handleEditSubmit}
 					>
+						<label htmlFor="project-title">Title:</label>
 						<div id="edit-form-input">
 							<input
 								type="text"
+								id="project-title"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 								placeholder={project.title || `Project Title`}
+								required
+								autoFocus
 							/>
 
+							<label htmlFor="project-description">Description:</label>
 							<textarea
+								id="project-description"
 								value={description}
 								onChange={(e) => setDescription(e.target.value)}
 								placeholder={project.description || `About my project...`}
+							/>
+
+							<label htmlFor="project-image-link">Image (optional):</label>
+							<input
+								id="project-image-link"
+								value={image}
+								onChange={(e) => setImage(e.target.value)}
+								placeholder={project.image || `Link to image...`}
 							/>
 						</div>
 
@@ -62,7 +77,7 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 				<>
 					<img
 						id="project-image"
-						src={project.image}
+						src={project.image || "/images/default-banner.png"}
 						alt={`${project.title}'s project image`}
 						onClick={() => {
 							isInDashboard ? navigate(`/projects/${project._id}/tasks`) : null;
@@ -78,7 +93,7 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 							</p>
 							<p className="description">{project.description}</p>
 						</div>
-						
+
 						<div className="button-actions">
 							<button
 								className="viewBtn"

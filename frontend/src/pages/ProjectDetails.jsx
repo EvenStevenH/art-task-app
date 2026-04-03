@@ -100,12 +100,6 @@ export default function ProjectTasks() {
 		setTasks(tasks.filter((t) => t._id !== taskId));
 	};
 
-	// const groupedTasks = {
-	// 	"To Do": tasks.filter((t) => t.status === "To Do"),
-	// 	"In Progress": tasks.filter((t) => t.status === "In Progress"),
-	// 	Done: tasks.filter((t) => t.status === "Done"),
-	// };
-
 	if (loading) return <Spinner />;
 	if (!project) return <div>Project not found.</div>;
 
@@ -124,36 +118,6 @@ export default function ProjectTasks() {
 			<h2>Tasks</h2>
 
 			{tasks.length < 1 && <div className="empty-message">No tasks... yet. One step at a time!</div>}
-
-			{/* <div className="kanban-board">
-				{Object.entries(groupedTasks).map(([status, tasks]) => (
-					<div
-						key={status}
-						className="kanban-column"
-					>
-						<h3>{status}</h3>
-
-						{tasks.map((task) => (
-							<Task
-								key={task._id}
-								task={task}
-								onEdit={handleEdit}
-								onUpdate={handleStatusChange}
-								onDelete={handleDelete}
-							/>
-						))}
-
-						{status === "To Do" && !isFormVisible && (
-							<button
-								className="toggleFormBtn"
-								onClick={() => setIsFormVisible(true)}
-							>
-								New Task
-							</button>
-						)}
-					</div>
-				))}
-			</div> */}
 
 			<div
 				className="grid"

@@ -7,6 +7,7 @@ export default function Dashboard() {
 	const [projects, setProjects] = useState([]);
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
+	const [image, setImage] = useState("");
 	const [isFormVisible, setIsFormVisible] = useState(false);
 	const [loading, setLoading] = useState(true);
 
@@ -25,11 +26,11 @@ export default function Dashboard() {
 		fetchProjects();
 	}, []);
 
-	const handleEdit = async (e, projectId, title, description) => {
+	const handleEdit = async (e, projectId, title, description, image) => {
 		e.preventDefault();
 		try {
-			await projectClient.put(`/${projectId}`, { title, description });
-			setProjects(projects.map((project) => (project._id === projectId ? { ...project, title, description } : project)));
+			await projectClient.put(`/${projectId}`, { title, description, image });
+			setProjects(projects.map((project) => (project._id === projectId ? { ...project, title, description, image } : project)));
 		} catch (error) {
 			console.error(error);
 		}
@@ -50,8 +51,8 @@ export default function Dashboard() {
 		e.preventDefault();
 
 		try {
-			// POST request (based off state: title and description) > add new project to state
-			const { data } = await projectClient.post("/", { title, description });
+			// POST request (based off state) > add new project to state
+			const { data } = await projectClient.post("/", { title, description, image });
 			setProjects([data, ...projects]);
 
 			// reset and hide the form
@@ -123,6 +124,14 @@ export default function Dashboard() {
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 							placeholder="About my project..."
+						/>
+
+						<label htmlFor="project-image-link">Image (optional):</label>
+						<input
+							id="project-image-link"
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
+							placeholder="Link to image..."
 						/>
 
 						<div className="button-actions">

@@ -275,7 +275,7 @@ header {
 	margin: 0;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	background-color: var(--solid);
 	border-radius: 1rem;
 	box-sizing: border-box;
@@ -294,25 +294,23 @@ header {
 
 .card #project-image {
 	width: 100%;
-	height: 400px;
+	min-height: 450px;
+	max-height: 600px;
 	display: block;
 	object-fit: cover;
 }
 
-.card #project-info {
-	padding: 2rem;
-}
-
+.card #project-info,
 .card #task-info {
-	height: 100%;
+	flex: 1 0 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 2rem;
+	gap: 1.5rem
 }
 
 .button-actions {
-	/* padding: .8rem 2rem 2rem; */
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -393,7 +391,7 @@ footer {
 }
 
 .description {
-	margin: 0.5rem 0 2rem;
+	margin-top: 0.5rem;
 	max-height: 6rem;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
@@ -495,25 +493,3 @@ footer {
 		transform: rotate(360deg);
 	}
 }
-
-/* -------------------------------------------------------------------------- */
-/* kanban */
-
-/* .kanban-board {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 1rem;
-	margin-top: 1rem;
-}
-
-.kanban-column {
-	background: var(--solid);
-	padding: 1rem;
-	border-radius: 1rem;
-	min-height: 400px;
-}
-
-.kanban-column h3 {
-	margin-bottom: 1rem;
-	color: var(--text);
-} */
