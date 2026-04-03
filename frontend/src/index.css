@@ -356,11 +356,10 @@ form .button-actions {
 }
 
 .toggleFormBtn img,
-.toggleFormBtn:hover span {
+.toggleFormBtn span {
 	/* width: 40px;
 	height: 40px; */
 	transition: all 0.4s ease;
-	display: inline-block;
 }
 
 .toggleFormBtn:hover img,
