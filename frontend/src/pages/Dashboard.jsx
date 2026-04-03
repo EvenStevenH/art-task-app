@@ -92,10 +92,11 @@ export default function Dashboard() {
 						className="toggleFormBtn"
 						onClick={() => setIsFormVisible(!isFormVisible)}
 					>
-						<img
+						{/* <img
 							src="/src/components/icons/add_beige.svg"
 							alt="Add icon"
-						/>
+						/> */}
+						<span class="material-symbols-outlined">add</span>
 						{projects.length < 1 ? `Your first project!` : `New Project`}
 					</button>
 				)}
@@ -140,10 +141,11 @@ export default function Dashboard() {
 								className="addNewBtn"
 								type="submit"
 							>
-								<img
+								{/* <img
 									src="/src/components/icons/add_white.svg"
 									alt="Add icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">add</span>
 								Add Project
 							</button>
 							<button

@@ -140,10 +140,11 @@ export default function ProjectTasks() {
 						className="toggleFormBtn"
 						onClick={() => setIsFormVisible(!isFormVisible)}
 					>
-						<img
+						{/* <img
 							src="/src/components/icons/add_beige.svg"
 							alt="Add icon"
-						/>
+						/> */}
+						<span class="material-symbols-outlined">add</span>
 						{tasks.length < 1 ? `Your first task!` : `New Task`}
 					</button>
 				)}
@@ -190,10 +191,11 @@ export default function ProjectTasks() {
 								className="addNewBtn"
 								type="submit"
 							>
-								<img
+								{/* <img
 									src="/src/components/icons/add_white.svg"
 									alt="Add icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">add</span>
 								Add Task
 							</button>
 							<button

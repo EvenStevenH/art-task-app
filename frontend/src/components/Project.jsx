@@ -57,17 +57,19 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 								className="editSaveBtn"
 								type="submit"
 							>
-								<img
+								{/* <img
 									src="/src/components/icons/save.svg"
 									alt="Save icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">check</span>
 								Save
 							</button>
 							<button onClick={() => setIsEditing(!isEditing)}>
-								<img
+								{/* <img
 									src="/src/components/icons/cancel.svg"
 									alt="Cancel icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">close</span>
 								Cancel
 							</button>
 						</div>
@@ -101,30 +103,33 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 									isInDashboard ? navigate(`/projects/${project._id}/tasks`) : navigate(`/dashboard`);
 								}}
 							>
-								<img
+								{/* <img
 									src="/src/components/icons/view.svg"
 									alt="View icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">view_kanban</span>
 								{isInDashboard ? `View` : `Dashboard`}
 							</button>
 							<button
 								className="editBtn"
 								onClick={() => setIsEditing(!isEditing)}
 							>
-								<img
+								{/* <img
 									src="/src/components/icons/edit.svg"
 									alt="Edit icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">edit_document</span>
 								Edit
 							</button>
 							<button
 								className="deleteBtn"
 								onClick={() => onDelete(project._id)}
 							>
-								<img
+								{/* <img
 									src="/src/components/icons/delete.svg"
 									alt="Delete icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">delete</span>
 								Delete
 							</button>
 						</div>

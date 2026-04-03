@@ -30,27 +30,29 @@ export default function NavBar() {
 	return (
 		<>
 			{user ? (
-				<nav>
-					<ul>
-						<li>
-							<Link to="/dashboard">Dashboard</Link>
-						</li>
-						<li onClick={logout}>
-							<Link to="/login">Logout</Link>
-						</li>
-					</ul>
-					{user && (
-						<li id="user-section">
-							<div>Welcome, {user.username}!</div>
-							<img
-								src={user?.profileImage || "/images/default-avatar.png"}
-								alt="user profile picture"
-								// onClick={handleImageClick}
-								id="profileImage"
-							/>
-						</li>
-					)}
-				</nav>
+				<header>
+					<nav>
+						<ul>
+							<li>
+								<Link to="/dashboard">Dashboard</Link>
+							</li>
+							<li onClick={logout}>
+								<Link to="/login">Logout</Link>
+							</li>
+						</ul>
+						{user && (
+							<li id="user-section">
+								<div>Welcome, {user.username}!</div>
+								<img
+									src={user?.profileImage || "/images/default-avatar.png"}
+									alt="user profile picture"
+									// onClick={handleImageClick}
+									id="profileImage"
+								/>
+							</li>
+						)}
+					</nav>
+				</header>
 			) : null}
 		</>
 	);

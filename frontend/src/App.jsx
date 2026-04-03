@@ -13,37 +13,39 @@ export default function App() {
 		<>
 			<NavBar />
 
-			{user ? (
-				<Routes>
-					<Route
-						path="/dashboard"
-						element={<Dashboard />}
-					/>
-					<Route
-						path="/projects/:projectId/tasks"
-						element={<ProjectDetails />}
-					/>
-					<Route
-						path="*"
-						element={<Navigate to="/dashboard" />}
-					/>
-				</Routes>
-			) : (
-				<Routes>
-					<Route
-						path="/login"
-						element={<Login />}
-					/>
-					<Route
-						path="/register"
-						element={<Register />}
-					/>
-					<Route
-						path="*"
-						element={<Navigate to="/login" />}
-					/>
-				</Routes>
-			)}
+			<div className="app-container">
+				{user ? (
+					<Routes>
+						<Route
+							path="/dashboard"
+							element={<Dashboard />}
+						/>
+						<Route
+							path="/projects/:projectId/tasks"
+							element={<ProjectDetails />}
+						/>
+						<Route
+							path="*"
+							element={<Navigate to="/dashboard" />}
+						/>
+					</Routes>
+				) : (
+					<Routes>
+						<Route
+							path="/login"
+							element={<Login />}
+						/>
+						<Route
+							path="/register"
+							element={<Register />}
+						/>
+						<Route
+							path="*"
+							element={<Navigate to="/login" />}
+						/>
+					</Routes>
+				)}
+			</div>
 		</>
 	);
 }

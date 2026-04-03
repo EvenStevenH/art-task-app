@@ -14,12 +14,6 @@
 	--heading: system-ui, "Segoe UI", Roboto, sans-serif;
 	--mono: ui-monospace, Consolas, monospace;
 
-	width: 1200px;
-	max-width: 100%;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-
 	font: 18px/145% var(--sans);
 	letter-spacing: 0.18px;
 	color-scheme: light dark;
@@ -41,6 +35,14 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+.app-container {
+	width: 1200px;
+	max-width: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
 }
 
 a {
@@ -68,8 +70,7 @@ main h2 {
 }
 
 body {
-	margin: 0;
-	padding: 3rem;
+	padding: 0 2rem;
 }
 
 .svg {
@@ -200,11 +201,21 @@ textarea {
 /* -------------------------------------------------------------------------- */
 /* nav bar */
 
+header {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	/* background-color: var(--accent2); */
+	/* margin-bottom: 2rem; */
+}
+
 nav {
+	flex: 1;
+	max-width: 1200px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 2rem;
+	margin: 3rem auto;
 }
 
 nav ul li {
@@ -243,11 +254,6 @@ nav ul li a {
 
 /* -------------------------------------------------------------------------- */
 /* projects and tasks */
-
-header {
-	display: flex;
-	justify-content: space-between;
-}
 
 .create-form {
 	min-height: 300px;
@@ -300,7 +306,7 @@ header {
 .card #project-image {
 	width: 100%;
 	min-height: 450px;
-	max-height: 600px;
+	/* max-height: 600px; */
 	display: block;
 	object-fit: cover;
 }
@@ -375,7 +381,7 @@ form .button-actions {
 }
 
 footer {
-	margin: 3rem 0 auto;
+	margin: 3rem 0 6rem;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;

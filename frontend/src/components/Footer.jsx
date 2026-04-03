@@ -20,10 +20,11 @@ export default function Footer() {
 					{isProjectDetails && (
 						<Link to="/dashboard">
 							<button id="backBtn">
-								<img
+								{/* <img
 									src="/src/components/icons/back.svg"
 									alt="Back icon"
-								/>
+								/> */}
+								<span class="material-symbols-outlined">arrow_back_ios</span>
 								Dashboard
 							</button>
 						</Link>
@@ -33,10 +34,11 @@ export default function Footer() {
 						id="backToTopBtn"
 						onClick={scrollToTop}
 					>
-						<img
+						{/* <img
 							src="/src/components/icons/top.svg"
 							alt="Top icon"
-						/>
+						/> */}
+						<span class="material-symbols-outlined">arrow_upward</span>
 						Back to Top
 					</button>
 				</footer>
