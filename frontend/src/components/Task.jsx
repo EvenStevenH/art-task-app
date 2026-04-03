@@ -13,7 +13,13 @@ export default function Task({ task, onUpdate, onDelete, onEdit }) {
 	};
 
 	return (
-		<div className="card">
+		<div
+			className={`card task ${
+				task.status.replace(" ", "-").toLowerCase()
+				// value of "task.status" > string to hyphen > added class
+				// "In Progress" > "in-progress"
+			}`}
+		>
 			{isEditing ? (
 				<>
 					<form

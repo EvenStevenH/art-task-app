@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { taskClient, projectClient } from "../clients/api";
+import { useNavigate } from "react-router-dom";
 import Project from "../components/Project";
 import Task from "../components/Task";
 import Spinner from "../components/Spinner";
@@ -15,6 +16,7 @@ export default function ProjectTasks() {
 	const [isFormVisible, setIsFormVisible] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const client = taskClient(projectId);
+	const navigate = useNavigate();
 
 	const [project, setProject] = useState(null);
 
@@ -47,8 +49,7 @@ export default function ProjectTasks() {
 		if (window.confirm("Are you sure you want to delete this project?")) {
 			try {
 				await projectClient.delete(`/${projectId}`);
-				// Navigate back to "/dashboard" after deleting the project
-				window.location.href = "/dashboard";
+				navigate("/dashboard");
 			} catch (error) {
 				console.error(error);
 			}
@@ -99,6 +100,12 @@ export default function ProjectTasks() {
 		setTasks(tasks.filter((t) => t._id !== taskId));
 	};
 
+	// const groupedTasks = {
+	// 	"To Do": tasks.filter((t) => t.status === "To Do"),
+	// 	"In Progress": tasks.filter((t) => t.status === "In Progress"),
+	// 	Done: tasks.filter((t) => t.status === "Done"),
+	// };
+
 	if (loading) return <Spinner />;
 	if (!project) return <div>Project not found.</div>;
 
@@ -115,7 +122,38 @@ export default function ProjectTasks() {
 
 			<h2>Tasks</h2>
 
-			{tasks.length < 1 && <div className="empty-message">No tasks. Let's create something today!</div>}
+			{tasks.length < 1 && <div className="empty-message">No tasks... yet. One step at a time!</div>}
+
+			{/* <div className="kanban-board">
+				{Object.entries(groupedTasks).map(([status, tasks]) => (
+					<div
+						key={status}
+						className="kanban-column"
+					>
+						<h3>{status}</h3>
+
+						{tasks.map((task) => (
+							<Task
+								key={task._id}
+								task={task}
+								onEdit={handleEdit}
+								onUpdate={handleStatusChange}
+								onDelete={handleDelete}
+							/>
+						))}
+
+						{status === "To Do" && !isFormVisible && (
+							<button
+								className="toggleFormBtn"
+								onClick={() => setIsFormVisible(true)}
+							>
+								New Task
+							</button>
+						)}
+					</div>
+				))}
+			</div> */}
+
 			<div className="task-grid">
 				{tasks.map((task) => (
 					<Task
@@ -136,7 +174,7 @@ export default function ProjectTasks() {
 						onClick={() => setIsFormVisible(!isFormVisible)}
 					>
 						<img
-							src="/src/components/icons/add.svg"
+							src="/src/components/icons/add_beige.svg"
 							alt="Add icon"
 						/>
 						{tasks.length < 1 ? `Your first task!` : `New Task`}
@@ -186,7 +224,7 @@ export default function ProjectTasks() {
 								type="submit"
 							>
 								<img
-									src="/src/components/icons/add.svg"
+									src="/src/components/icons/add_white.svg"
 									alt="Add icon"
 								/>
 								Add Task

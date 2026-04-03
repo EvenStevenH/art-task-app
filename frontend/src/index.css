@@ -80,6 +80,7 @@ body {
 }
 
 button {
+	color: var(--bgLight);
 	background-color: var(--accent3);
 	padding: 0.5rem;
 	flex: 1;
@@ -285,6 +286,10 @@ header {
 	transform: translateY(-3px) translateX(1px) rotate(0.4deg);
 }
 
+.card select {
+	padding-left: 1rem;
+}
+
 .task-info {
 	display: flex;
 	flex-direction: column;
@@ -311,8 +316,9 @@ header {
 }
 
 .toggleFormBtn {
+	color: var(--text3);
 	background-color: transparent;
-	border: dashed var(--accent2) .2rem;
+	border: dashed var(--accent2) 0.2rem;
 	font-size: 1.4rem;
 	border-radius: 1rem;
 	min-height: 300px;
@@ -356,7 +362,7 @@ header {
 }
 
 .description {
-	margin: .5rem 0 2rem;
+	margin: 0.5rem 0 2rem;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	overflow-y: auto;
@@ -377,6 +383,25 @@ header {
 
 .empty-message {
 	color: var(--text3);
+}
+
+.task.to-do {
+	background-color: var(--solid);
+}
+
+.task.in-progress select {
+	color: var(--accent2);
+}
+
+.task.done {
+	background-color: var(--solid);
+	/* opacity: 0.9; */
+	filter: brightness(90%);
+}
+
+.task.done h3,
+.task.done .description {
+	text-decoration: line-through;
 }
 
 .reveal-animation {
@@ -438,3 +463,25 @@ header {
 		transform: rotate(360deg);
 	}
 }
+
+/* -------------------------------------------------------------------------- */
+/* kanban */
+
+/* .kanban-board {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.kanban-column {
+	background: var(--solid);
+	padding: 1rem;
+	border-radius: 1rem;
+	min-height: 400px;
+}
+
+.kanban-column h3 {
+	margin-bottom: 1rem;
+	color: var(--text);
+} */

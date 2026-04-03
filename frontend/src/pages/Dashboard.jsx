@@ -88,7 +88,7 @@ export default function Dashboard() {
 						onClick={() => setIsFormVisible(!isFormVisible)}
 					>
 						<img
-							src="/src/components/icons/add.svg"
+							src="/src/components/icons/add_beige.svg"
 							alt="Add icon"
 						/>
 						{projects.length < 1 ? `Your first project!` : `New Project`}
@@ -128,7 +128,7 @@ export default function Dashboard() {
 								type="submit"
 							>
 								<img
-									src="/src/components/icons/add.svg"
+									src="/src/components/icons/add_white.svg"
 									alt="Add icon"
 								/>
 								Add Project
