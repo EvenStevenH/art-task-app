@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Project({ project, onEdit, onDelete }) {
+export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [title, setTitle] = useState(project.title);
 	const [description, setDescription] = useState(project.description);
 	const navigate = useNavigate();
 	const date = new Date(project.createdAt);
-
-	const handleViewDetails = () => {
-		navigate(`/projects/${project._id}/tasks`);
-	};
 
 	const handleEditSubmit = (e) => {
 		e.preventDefault();
@@ -76,13 +72,15 @@ export default function Project({ project, onEdit, onDelete }) {
 					<div className="button-actions">
 						<button
 							className="viewBtn"
-							onClick={handleViewDetails}
+							onClick={() => {
+								isInDashboard ? navigate(`/projects/${project._id}/tasks`) : navigate(`/dashboard`);
+							}}
 						>
 							<img
 								src="/src/components/icons/view.svg"
 								alt="View icon"
 							/>
-							View
+							{isInDashboard ? `View` : `Dashboard`}
 						</button>
 						<button
 							className="editBtn"

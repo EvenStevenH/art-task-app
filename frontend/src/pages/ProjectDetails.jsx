@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { taskClient } from "../clients/api";
+import { taskClient, projectClient } from "../clients/api";
+import Project from "../components/Project";
 import Task from "../components/Task";
 import Spinner from "../components/Spinner";
 
@@ -15,19 +16,44 @@ export default function ProjectTasks() {
 	const [loading, setLoading] = useState(true);
 	const client = taskClient(projectId);
 
+	const [project, setProject] = useState(null);
+
 	useEffect(() => {
-		async function fetchTasks() {
+		async function fetchData() {
 			try {
-				const { data } = await client.get("/");
-				setTasks(data);
+				const [tasksRes, projectRes] = await Promise.all([client.get("/"), projectClient.get(`/${projectId}`)]);
+				setTasks(tasksRes.data);
+				setProject(projectRes.data);
 			} catch (err) {
-				console.log(err.response.data);
+				console.log(err.response?.data || err);
 			} finally {
-				setLoading(false); // hide loading once the data is fetched
+				setLoading(false);
 			}
 		}
-		fetchTasks();
-	}, []);
+		fetchData();
+	}, [projectId]);
+
+	const handleProjectEdit = async (e, projectId, title, description) => {
+		e.preventDefault();
+		try {
+			await projectClient.put(`/${projectId}`, { title, description });
+			setProject({ ...project, title, description }); // Update only the current project
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleProjectDelete = async (projectId) => {
+		if (window.confirm("Are you sure you want to delete this project?")) {
+			try {
+				await projectClient.delete(`/${projectId}`);
+				// Navigate back to "/dashboard" after deleting the project
+				window.location.href = "/dashboard";
+			} catch (error) {
+				console.error(error);
+			}
+		}
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -74,13 +100,22 @@ export default function ProjectTasks() {
 	};
 
 	if (loading) return <Spinner />;
+	if (!project) return <div>Project not found.</div>;
 
 	return (
 		<main>
-			<h1>Your Tasks</h1>
+			<h1>{project.title}</h1>
+
+			<Project
+				project={project}
+				onEdit={handleProjectEdit}
+				onDelete={handleProjectDelete}
+				isInDashboard={false}
+			/>
+
+			<h2>Tasks</h2>
 
 			{tasks.length < 1 && <div className="empty-message">No tasks. Let's create something today!</div>}
-
 			<div className="task-grid">
 				{tasks.map((task) => (
 					<Task
@@ -113,7 +148,7 @@ export default function ProjectTasks() {
 						className="create-form reveal-animation"
 						onSubmit={handleSubmit}
 					>
-						<h2>Create a new task!</h2>
+						<h3>Create a new task!</h3>
 
 						<label htmlFor="task-title">Title:</label>
 						<input

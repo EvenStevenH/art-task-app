@@ -41,12 +41,13 @@ export async function getOneProject(req, res) {
 		if (!project) {
 			return res.status(404).json({ message: "Project not found" });
 		}
-		if (project.user.toString() !== req.user._id.toString()) {
+		if (project.user._id.toString() !== req.user._id.toString()) {
 			return res.status(403).json({ message: "Incorrect user!" });
 		}
 
 		res.json(project);
 	} catch (error) {
+		console.error("Error fetching project:", error);
 		res.status(500).json({ message: "An unexpected error occurred." });
 	}
 }

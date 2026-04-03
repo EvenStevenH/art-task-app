@@ -57,15 +57,19 @@ h1 {
 	text-transform: uppercase;
 }
 
-h2 {
-	color: var(--text);
-	margin-bottom: 1rem;
+main h2 {
+	color: var(--text3);
+	font-size: 2rem;
+	font-family: "Bungee", sans-serif;
+	line-height: 1.2;
+	margin-top: 3rem;
+	text-align: left;
+	text-transform: uppercase;
 }
 
 body {
 	margin: 0;
 	padding: 3rem;
-	border: none;
 }
 
 .svg {
@@ -82,7 +86,7 @@ button {
 	border-radius: 0.5rem;
 	border: none;
 	letter-spacing: 1px;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -245,6 +249,11 @@ header {
 	padding: 2rem;
 }
 
+.create-form h3 {
+	color: var(--text);
+	margin-bottom: 1rem;
+}
+
 .project-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -255,6 +264,7 @@ header {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 1rem;
+	margin-top: 1rem;
 }
 
 .card {
@@ -272,7 +282,7 @@ header {
 
 .card:hover,
 .toggleFormBtn:hover {
-	transform: translateY(-4px) translateX(2px) rotate(0.6deg);
+	transform: translateY(-3px) translateX(1px) rotate(0.4deg);
 }
 
 .task-info {
@@ -284,6 +294,7 @@ header {
 	margin-top: auto;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	gap: 0.5rem;
 }
 
@@ -300,7 +311,9 @@ header {
 }
 
 .toggleFormBtn {
-	font-size: 1.5rem;
+	background-color: transparent;
+	border: dashed var(--accent2) .2rem;
+	font-size: 1.4rem;
 	border-radius: 1rem;
 	min-height: 300px;
 	display: flex;
@@ -319,7 +332,6 @@ header {
 
 .toggleFormBtn,
 .backBtn {
-	background-color: var(--accent2);
 	padding: 0.5rem 1rem;
 	margin: 0;
 }
@@ -333,7 +345,7 @@ header {
 }
 
 .backBtn {
-	/* padding: 1rem 1.5rem; */
+	background-color: var(--accent2);
 	margin: 3rem 0 auto;
 	display: inline-flex;
 }
@@ -344,7 +356,7 @@ header {
 }
 
 .description {
-	margin: 1rem 0 2rem;
+	margin: .5rem 0 2rem;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	overflow-y: auto;
@@ -365,7 +377,6 @@ header {
 
 .empty-message {
 	color: var(--text3);
-	margin: 1rem auto;
 }
 
 .reveal-animation {

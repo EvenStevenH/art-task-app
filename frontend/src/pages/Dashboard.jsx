@@ -78,6 +78,7 @@ export default function Dashboard() {
 						key={project._id}
 						onEdit={handleEdit}
 						onDelete={handleDelete}
+						isInDashboard={true}
 					/>
 				))}
 
@@ -100,7 +101,7 @@ export default function Dashboard() {
 						className={`create-form reveal-animation ${!isFormVisible ? "hidden" : "visible"}`}
 						onSubmit={handleSubmit}
 					>
-						<h2>Create a new project!</h2>
+						<h3>Create a new project!</h3>
 
 						<label htmlFor="project-title">Title:</label>
 						<input
