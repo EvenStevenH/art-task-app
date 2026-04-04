@@ -235,6 +235,11 @@ nav ul li:hover {
 
 nav ul li a {
 	color: var(--text3);
+	transition: all 0.2s ease;
+}
+
+nav ul li a:hover {
+	color: var(--accent2);
 }
 
 #user-section {
@@ -252,7 +257,7 @@ nav ul li a {
 	border-radius: 50%;
 	object-fit: cover;
 	cursor: pointer;
-	transition: transform 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 #profileImage:hover {
