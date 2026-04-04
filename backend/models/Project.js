@@ -19,6 +19,7 @@ const projectSchema = new mongoose.Schema(
 			type: String,
 			trim: true,
 			default: "/images/default-banner.png",
+			// set: (val) => val || "/images/default-banner.png", // prevent empty strings
 			set: function (val) {
 				if (val === null) {
 					return "/images/default-banner.png";

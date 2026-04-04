@@ -52,7 +52,7 @@ export default function Dashboard() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		// isValidImageUrl(image); // validate image link
+		isValidImageUrl(image); // validate image link
 
 		try {
 			// POST request (based off state) > add new project to state > reset and hide the form
