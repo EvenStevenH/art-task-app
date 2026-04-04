@@ -75,13 +75,13 @@ export default function Register() {
 					/>
 
 					<button>Register</button>
-
-					{error && <p>{error}</p>}
 				</form>
 
 				<p className="auth-link">
 					Already have an account? <Link to="/login">Login here</Link>!
 				</p>
+
+				{error && <p id="error-message">{error}</p>}
 			</div>
 		</div>
 	);

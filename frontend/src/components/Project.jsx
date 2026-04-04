@@ -47,7 +47,7 @@ export default function Project({ project, onEdit, onDelete, isInDashboard }) {
 							id="project-image-link"
 							value={image}
 							onChange={(e) => setImage(e.target.value)}
-							placeholder={project.image || `Link to image...`}
+							placeholder={project.image || `https://domain.com/image.jpg`}
 						/>
 					</div>
 

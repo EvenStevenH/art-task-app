@@ -61,13 +61,13 @@ export default function Login() {
 					/>
 
 					<button>Login</button>
-
-					{error && <p>{error}</p>}
 				</form>
 
 				<p className="auth-link">
 					Don't have an account? <Link to="/register">Register here</Link>!
 				</p>
+
+				{error && <p id="error-message">{error}</p>}
 			</div>
 		</div>
 	);

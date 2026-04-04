@@ -5,27 +5,27 @@ export default function NavBar() {
 	const { user, setUser, loading, logout } = useUser(); // bring in user info from context
 	if (loading) return null; // avoid default flicker
 
-	// const handleImageClick = async () => {
-	// 	const newUrl = prompt("Enter image URL to change your profile picture! Accepted file types are jpg, jpeg, png, and gif.");
-	// 	if (!newUrl) return;
+	const handleImageClick = async () => {
+		const newUrl = prompt("Enter image URL to change your profile picture! Accepted file types are jpg, jpeg, png, and gif.");
+		if (!newUrl) return;
 
-	// 	// validate common image file extensions
-	// 	const validExtensions = [".jpg", ".jpeg", ".png", ".gif"];
-	// 	const extension = new URL(newUrl).pathname.split(".").pop().toLowerCase();
-	// 	if (!validExtensions.includes(`.${extension}`)) {
-	// 		return alert("Please enter a valid image URL with an appropriate file extension!");
-	// 	}
+		// validate common image file extensions
+		const validExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+		const extension = new URL(newUrl).pathname.split(".").pop().toLowerCase();
+		if (!validExtensions.includes(`.${extension}`)) {
+			return alert("Please enter a valid image URL with an appropriate file extension!");
+		}
 
-	// 	try {
-	// 		const { data } = await userClient.put("/profile-image", {
-	// 			profileImage: newUrl,
-	// 		});
+		try {
+			const { data } = await userClient.put("/profile-image", {
+				profileImage: newUrl,
+			});
 
-	// 		setUser(data); // update instantly
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
+			setUser(data); // update instantly
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
 		<>

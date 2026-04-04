@@ -3,6 +3,7 @@ import { projectClient } from "../clients/api";
 import Project from "../components/Project";
 import Spinner from "../components/Spinner";
 import Footer from "../components/Footer";
+import { isValidImageUrl } from "../validators";
 
 export default function Dashboard() {
 	const [projects, setProjects] = useState([]);
@@ -51,14 +52,15 @@ export default function Dashboard() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		// isValidImageUrl(image); // validate image link
+
 		try {
-			// POST request (based off state) > add new project to state
+			// POST request (based off state) > add new project to state > reset and hide the form
 			const { data } = await projectClient.post("/", { title, description, image });
 			setProjects([data, ...projects]);
-
-			// reset and hide the form
 			setTitle("");
 			setDescription("");
+			setImage("");
 			setIsFormVisible(false);
 		} catch (err) {
 			console.log(err);
@@ -137,7 +139,7 @@ export default function Dashboard() {
 							id="project-image-link"
 							value={image}
 							onChange={(e) => setImage(e.target.value)}
-							placeholder="Link to image..."
+							placeholder="https://domain.com/image.jpg"
 						/>
 
 						<div className="button-actions">
