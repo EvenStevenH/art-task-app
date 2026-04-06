@@ -39,7 +39,7 @@ export default function Login() {
 		<div className="auth-page">
 			<LeftPane />
 
-			<div class="right-pane">
+			<div className="right-pane">
 				<div className="auth-panel">
 					<h1>Login</h1>
 

@@ -43,7 +43,7 @@ export default function Register() {
 		<div className="auth-page">
 			<LeftPane />
 
-			<div class="right-pane">
+			<div className="right-pane">
 				<div className="auth-panel">
 					<h1>Register</h1>
 
