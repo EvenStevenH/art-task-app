@@ -32,14 +32,21 @@ export default function NavBar() {
 			{user ? (
 				<header>
 					<nav>
-						<ul>
-							<li>
-								<Link to="/dashboard">Dashboard</Link>
-							</li>
-							<li onClick={logout}>
-								<Link to="/login">Logout</Link>
-							</li>
-						</ul>
+						<div>
+							<Link to="/dashboard">
+								<span className="material-symbols-outlined">design_services</span>
+							</Link>
+
+							<ul>
+								<li>
+									<Link to="/dashboard">Dashboard</Link>
+								</li>
+								<li onClick={logout}>
+									<Link to="/login">Logout</Link>
+								</li>
+							</ul>
+						</div>
+
 						{user && (
 							<li id="user-section">
 								<div>Welcome, {user.username}!</div>

@@ -7,8 +7,9 @@
 	--bgLight: #f8f4e6;
 	--solid: #ede2c2;
 	--accent: #c07607;
-	--accent2: #ba875f;
+	--accent2: #df9155;
 	--accent3: #988a7f;
+	--accent4: #ba875f;
 
 	--sans: system-ui, "Segoe UI", Roboto, sans-serif;
 	--heading: system-ui, "Segoe UI", Roboto, sans-serif;
@@ -49,6 +50,11 @@
 
 a {
 	color: var(--accent);
+	transition: all 0.2s ease;
+}
+
+a:hover {
+	filter: brightness(110%);
 }
 
 h1 {
@@ -73,6 +79,8 @@ main h2 {
 
 body {
 	padding: 0 2rem;
+	background: url(../public/images/pattern.png);
+	background-repeat: repeat;
 }
 
 .svg {
@@ -153,10 +161,25 @@ textarea {
 /* login and register page */
 
 .auth-page {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	display: flex;
+	min-height: 500px;
+	height: 100vh;
+}
+
+.left-pane {
+	flex: 1;
+	background: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.right-pane {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
 }
 
 .auth-panel {
@@ -205,6 +228,49 @@ textarea {
 	margin-top: 1rem;
 }
 
+.welcome-text {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.welcome-text .material-symbols-outlined {
+	color: var(--text3);
+	font-size: 12rem;
+	transition: all 0.4s ease;
+	cursor: pointer;
+}
+
+.welcome-text .material-symbols-outlined:hover {
+	transform: rotate(12deg);
+}
+
+.welcome-text h1 {
+	font-size: 3.5rem;
+	color: var(--text3);
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	margin-bottom: 0.5rem;
+	transition: all 0.2s ease;
+}
+
+.welcome-text p {
+	color: var(--text3);
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	max-width: 300px;
+}
+
+.welcome-text p a {
+	color: var(--accent2);
+	text-decoration: underline;
+	transition: all 0.2s ease;
+}
+
 /* -------------------------------------------------------------------------- */
 /* nav bar */
 
@@ -225,6 +291,26 @@ nav {
 	margin: 3rem auto;
 }
 
+nav div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 0.8rem;
+	color: var(--text3);
+}
+
+nav div .material-symbols-outlined {
+	color: var(--text3);
+	font-size: 60px;
+	transition: all 0.2s ease;
+}
+
+nav div .material-symbols-outlined:hover {
+	transform: rotate(12deg);
+}
+
 nav ul li {
 	transition: all 0.2s ease;
 }
@@ -235,7 +321,6 @@ nav ul li:hover {
 
 nav ul li a {
 	color: var(--text3);
-	transition: all 0.2s ease;
 }
 
 nav ul li a:hover {
@@ -251,7 +336,7 @@ nav ul li a:hover {
 }
 
 #profileImage {
-	outline: 0.16rem solid var(--text3);
+	outline: 0.3rem solid var(--text3);
 	height: 60px;
 	width: 60px;
 	border-radius: 50%;
@@ -408,7 +493,7 @@ footer {
 
 #backBtn,
 #backToTopBtn {
-	background-color: var(--accent2);
+	background-color: var(--accent4);
 	display: inline-flex;
 	width: max-content;
 	flex: 0 1 auto;
@@ -527,6 +612,14 @@ footer {
 }
 
 @media (max-width: 800px) {
+	.auth-page {
+		flex-direction: column;
+	}
+
+	.left-pane {
+		display: none;
+	}
+
 	.card {
 		flex-wrap: wrap;
 	}
