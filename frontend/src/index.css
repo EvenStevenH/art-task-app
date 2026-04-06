@@ -303,7 +303,7 @@ nav div {
 
 nav div .material-symbols-outlined {
 	color: var(--text3);
-	font-size: 60px;
+	font-size: 75px;
 	transition: all 0.2s ease;
 }
 
@@ -330,7 +330,7 @@ nav ul li a:hover {
 #user-section {
 	color: var(--text3);
 	display: flex;
-	gap: 0.8rem;
+	gap: 1rem;
 	justify-content: center;
 	align-items: center;
 }
