@@ -447,7 +447,8 @@ form .button-actions {
 
 .toggleFormBtn {
 	color: var(--text3);
-	background-color: transparent;
+	/* background-color: transparent; */
+	background-color: #df915513;
 	border: dashed var(--accent2) 0.2rem;
 	font-size: 1.4rem;
 	border-radius: 1rem;
